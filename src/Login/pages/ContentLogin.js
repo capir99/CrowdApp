@@ -1,6 +1,7 @@
 import logo from "../../logo.PNG";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
 
 const ContentLogin = () => {
   return (
@@ -28,9 +29,9 @@ const ContentLogin = () => {
           <label htmlFor="floatingPassword">Contraseña</label>
         </div>
 
-        <Button className="w-100 btn btn-lg btn-primary" type="submit">
-          Ingresar
-        </Button>
+        <Link to="/Home">
+          <Button className="w-100 btn btn-lg btn-primary">Ingresar</Button>
+        </Link>
         <p className="mt-5 mb-3 text-muted">&copy; NanaPass-2024</p>
       </form>
     </div>

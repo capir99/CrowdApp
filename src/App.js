@@ -1,5 +1,7 @@
 import "./css/app.css";
-import ContentLogin from "./Login/pages/ContentLogin";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Detail from "./Detailcard/pages/Detail";
+import Home from "./Home/pages/Home";
 import Error from "./Shared/pages/Error";
 
 import {
@@ -14,7 +16,9 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<ContentLogin />} />
+          <Route path="/Detailcard" element={<Detail />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/error" element={<Error />} />
           <Route path="*" element={<Navigate to="/error" />} />
         </Routes>
