@@ -5,8 +5,13 @@ import minus from "../../img/icons/minus.png";
 import heart from "../../img/icons/heart_red.png";
 import heart2 from "../../img/icons/heart_red2.png";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Detail = () => {
+  const location = useLocation();
+  const productoID = 2
+  // const producto = location.state || { producto: {} };
+
   const producto = {
     id: 1,
     imag: ima1,
@@ -21,15 +26,22 @@ const Detail = () => {
     helpways: "",
   };
 
-  const [activeTab, setActiveTab] = useState("tab1"); // Estado para controlar la pestaña activa
+  // Estado para controlar la pestaña activa
+  const [activeTab, setActiveTab] = useState("tab1");
 
+  // Actualiza el estado al hacer clic en una pestaña
   const handleTabClick = (tab) => {
-    setActiveTab(tab); // Actualiza el estado al hacer clic en una pestaña
+    setActiveTab(tab);
   };
+
+  // Debug: Imprimir el valor de location.state
+  console.log("location.state:", location.state);
 
   return (
     <div>
-      <p className="h3 mb-3 fw-normal">Lo has visto en {producto.location}</p>
+      <p className="h3 mb-3 fw-normal">
+        Lo has visto en {producto.location} {productoID}
+      </p>
       <img src={producto.imag} alt="Location Icon" className="circular-image" />
 
       <div className="container-detalle">

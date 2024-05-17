@@ -7,7 +7,7 @@ import Busqueda from "../components/Busqueda";
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="home-container">
       <div className="top-image-container">
         <img className="logo-nana" src={logo} alt="" />
       </div>

@@ -6,8 +6,8 @@ import ima3 from "../../img/prod7.PNG";
 import ima4 from "../../img/prod8.PNG";
 import ima5 from "../../img/prod9.PNG";
 import ima6 from "../../img/prod10.PNG";
-
 import Producto from "./Producto";
+import { useState } from "react";
 
 const ListaProductos = () => {
   const productos = [
@@ -18,6 +18,11 @@ const ListaProductos = () => {
       title: "Grupo Alcantara",
       location: "Plaza Mayor",
       likes: "34",
+      text1:
+        "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+      details:
+        "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+      helpways: "",
     },
     {
       id: 2,
@@ -26,6 +31,11 @@ const ListaProductos = () => {
       title: "Gipsy Soul",
       location: "La latina",
       likes: "12",
+      text1:
+        "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+      details:
+        "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+      helpways: "",
     },
     {
       id: 3,
@@ -34,6 +44,11 @@ const ListaProductos = () => {
       title: "PinArtarte",
       location: "Plaza Mayor",
       likes: "123",
+      text1:
+        "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+      details:
+        "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+      helpways: "",
     },
     {
       id: 4,
@@ -42,6 +57,11 @@ const ListaProductos = () => {
       title: "StopArt",
       location: "Plaza Mayor",
       likes: "72",
+      text1:
+        "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+      details:
+        "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+      helpways: "",
     },
     {
       id: 5,
@@ -50,6 +70,11 @@ const ListaProductos = () => {
       title: "Viva Mexico",
       location: "La Gran Via",
       likes: "34",
+      text1:
+        "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+      details:
+        "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+      helpways: "",
     },
     {
       id: 6,
@@ -58,22 +83,29 @@ const ListaProductos = () => {
       title: "Alejandro Rios",
       location: "Puerta del Sol",
       likes: "44",
+      text1:
+        "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+      details:
+        "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+      helpways: "",
     },
   ];
+
+  const [prodSel, setprodSel] = useState(0);
 
   return (
     <Container>
       <Row xs={1} md={2} lg={3} xl={4} xxl={4}>
         {" "}
         {/* Definir el número de columnas según el tamaño de la pantalla */}
-        {productos.map((producto, index) => (
+        {productos.map((prod, index) => (
           <Col key={index}>
-            <Link to={`/Detailcard`}>
+            <Link to={{ pathname: "/Detail", state: { productoID: prodSel } }}>
               <Button
-                id={producto._id}
+                id={prod._id}
                 className="card-img-button bg-transparent border-0"
               >
-                <Producto producto={producto} />
+                <Producto producto={prod} />
               </Button>
             </Link>
           </Col>

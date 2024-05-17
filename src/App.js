@@ -1,8 +1,9 @@
 import "./css/app.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Detail from "./Detailcard/pages/Detail";
+import Detail from "./Card/pages/Detail";
 import Home from "./Home/pages/Home";
 import Error from "./Shared/pages/Error";
+import CreateProducto from "./Product/pages/Create";
 
 import {
   BrowserRouter as Router,
@@ -16,8 +17,9 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/Detailcard" element={<Detail />} />
+          <Route path="/Detail" element={<Detail />} />
           <Route path="/Home" element={<Home />} />
+          <Route path="/Create" element={<CreateProducto />} />
           <Route path="/" element={<Home />} />
           <Route path="/error" element={<Error />} />
           <Route path="*" element={<Navigate to="/error" />} />
