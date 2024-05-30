@@ -5,26 +5,28 @@ import minus from "../../img/icons/minus.png";
 import heart from "../../img/icons/heart_red.png";
 import heart2 from "../../img/icons/heart_red2.png";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+
+import { useParams } from 'react-router-dom';
 
 const Detail = () => {
-  const location = useLocation();
-  const productoID = 2
-  // const producto = location.state || { producto: {} };
-
-  const producto = {
-    id: 1,
-    imag: ima1,
-    name: "Lucia, Sara y Antonio",
-    title: "Grupo Alcantara",
-    location: "Plaza Mayor",
-    likes: "34",
-    text1:
-      "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
-    details:
-      "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
-    helpways: "",
-  };
+  const { id } = useParams();
+  const [producto, setProducto] = useState([]);
+  const productoID = 2;
+  
+  console.log("este es el id" + id);
+  // const producto = {
+  //   id: 1,
+  //   imag: ima1,
+  //   name: "Lucia, Sara y Antonio",
+  //   title: "Grupo Alcantara",
+  //   location: "Plaza Mayor",
+  //   likes: "34",
+  //   text1:
+  //     "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
+  //   details:
+  //     "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
+  //   helpways: "",
+  // };
 
   // Estado para controlar la pestaña activa
   const [activeTab, setActiveTab] = useState("tab1");
@@ -34,8 +36,7 @@ const Detail = () => {
     setActiveTab(tab);
   };
 
-  // Debug: Imprimir el valor de location.state
-  console.log("location.state:", location.state);
+
 
   return (
     <div>

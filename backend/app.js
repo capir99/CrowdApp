@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+var cors = require("cors");
 
 const productRoutes = require("./routes/productRoutes");
 
@@ -20,6 +21,7 @@ try {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use("/api/products", productRoutes);
 module.exports = app;
