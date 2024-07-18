@@ -3,6 +3,7 @@ const app = express();
 var cors = require("cors");
 
 const productRoutes = require("./routes/productRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
 
 require("dotenv").config();
 
@@ -23,5 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+app.use("/api/payment", paymentRoutes);
 app.use("/api/products", productRoutes);
+
 module.exports = app;

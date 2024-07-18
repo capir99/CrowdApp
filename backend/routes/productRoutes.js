@@ -7,6 +7,16 @@ const productController = require("../controllers/productController");
 router.get("/list", productController.getProducts);
 //Crear producto
 router.post("/add", productController.addProduct);
+//Actualizar likes
+router.post("/modifyLikes/:id", productController.modifyLikes);
+//Consultar producto por parte de su nombre
+router.get("/search/:searchText", productController.getProductoByWord);
+//Consultar producto por categoria
+router.get(
+  "/searchCategory/:category",
+  productController.getProductoByCategory
+);
+
 //Consultar producto por Id
 router.get("/:id", productController.getProductoById);
 
@@ -14,8 +24,7 @@ router.get("/:id", productController.getProductoById);
 // router.get("/listStock", productController.getProductosStock);
 // //Eliminar producto
 // router.delete("/remove/:id", productController.removeProducto);
-// //Actualizar producto
-// router.post("/modify/:id", productController.modifyProducto);
+
 // //Consultar producto por codigo
 // router.get("/search/:code", productController.getProductoByCode);
 

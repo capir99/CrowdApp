@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import pickImage from "../../img/icons/pick.PNG";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const Create = () => {
+const Update = () => {
   const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  const [previewImage, setPreviewImage] = useState(pickImage); // Estado para previsualizar la imagen
+
   // Estado para almacenar los valores del formulario
-  const [formData, setFormData] = useState({
+  const [producto, setproducto] = useState({
     imag: "",
     name: "",
     title: "",
@@ -19,13 +25,32 @@ const Create = () => {
     likes: "0", // Inicializado en 0, por ejemplo
   });
 
-  const [previewImage, setPreviewImage] = useState(pickImage); // Estado para previsualizar la imagen
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/products/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setproducto(data);
+        // setPreviewImage(require(`../../img/${producto.imag}`));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle error state or show a message to the user
+      }
+    }
+    fetchData();
+  }, [id, producto.imag]);
+
   const handleImageChange = (e) => {
     const file = e.target.files[0]; // Obtener el archivo de imagen seleccionado
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFormData({ ...formData, imag: file.name }); // Guardar el nombre del archivo en formData
+        setproducto({ ...producto, imag: file.name }); // Guardar el nombre del archivo en producto
         setPreviewImage(reader.result); // Mostrar la imagen como previsualización
       };
       reader.readAsDataURL(file); // Leer el archivo como URL de datos
@@ -35,8 +60,8 @@ const Create = () => {
   // Función para manejar cambios en los campos del formulario
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({
-      ...formData,
+    setproducto({
+      ...producto,
       [id]: value,
     });
   };
@@ -50,7 +75,7 @@ const Create = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(producto),
     };
     try {
       const response = await fetch(
@@ -63,11 +88,26 @@ const Create = () => {
 
       alert("Registro exitoso");
       navigate("/home");
-      
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  //  //Función para actualizar producto editado a partir de la pantalla modal
+  //  const productoActualizar = (id) => {
+  //   async function fetchData() {
+  //     const config = {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(productoSel),
+  //     };
+  //     await fetch("http://localhost:3001/api/productos/modify/" + id, config);
+  //   }
+  //   fetchData();
+  // };
 
   return (
     <React.Fragment>
@@ -85,7 +125,7 @@ const Create = () => {
                 }}
               >
                 <strong style={{ color: "#333", letterSpacing: "1px" }}>
-                  Nuevo Artista
+                  Actualizar Artista
                 </strong>
               </h2>
               {/* Sección de imagen */}
@@ -121,7 +161,7 @@ const Create = () => {
                     <Form.Control
                       type="text"
                       placeholder="Nombre del artista"
-                      value={formData.name}
+                      value={producto.name}
                       onChange={handleInputChange}
                     />
                   </Col>
@@ -137,7 +177,7 @@ const Create = () => {
                     <Form.Control
                       type="text"
                       placeholder="Título del artista"
-                      value={formData.title}
+                      value={producto.title}
                       onChange={handleInputChange}
                     />
                   </Col>
@@ -153,7 +193,7 @@ const Create = () => {
                     <Form.Control
                       type="text"
                       placeholder="Ubicación del artista"
-                      value={formData.location}
+                      value={producto.location}
                       onChange={handleInputChange}
                     />
                   </Col>
@@ -170,7 +210,7 @@ const Create = () => {
                       as="textarea"
                       rows={3}
                       placeholder="Texto de invitación"
-                      value={formData.invitation}
+                      value={producto.invitation}
                       onChange={handleInputChange}
                     />
                   </Col>
@@ -187,7 +227,7 @@ const Create = () => {
                       as="textarea"
                       rows={3}
                       placeholder="Detalles adicionales"
-                      value={formData.details}
+                      value={producto.details}
                       onChange={handleInputChange}
                     />
                   </Col>
@@ -203,7 +243,7 @@ const Create = () => {
                     <Form.Control
                       type="text"
                       placeholder="Formas en que se puede ayudar"
-                      value={formData.helpways}
+                      value={producto.helpways}
                       onChange={handleInputChange}
                     />
                   </Col>
@@ -217,7 +257,7 @@ const Create = () => {
                   </Form.Label>
                   <Col xs={9}>
                     <Form.Select
-                      value={formData.category}
+                      value={producto.category}
                       onChange={handleInputChange}
                     >
                       <option value="ApieCalle">A pie de Calle</option>
@@ -229,7 +269,7 @@ const Create = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit">
-                Registrar
+                Actualizar
               </Button>
             </Form>
           </Col>
@@ -239,4 +279,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Update;

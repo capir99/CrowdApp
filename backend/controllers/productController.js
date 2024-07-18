@@ -2,7 +2,6 @@ const Product = require("../models/productModel");
 
 //metodo para listar los productos
 exports.getProducts = (req, res) => {
-  // res.status(200).json("HOLAAAAAAA");
   Product.find()
     .then((postResult) => {
       if (postResult) {
@@ -33,9 +32,66 @@ exports.addProduct = (req, res) => {
   });
 };
 
+//metodo para modificar likes
+exports.modifyLikes = (req, res) => {
+  const filter = { _id: req.params.id };
+
+  Product.findOne(filter).then((productResult) => {
+    if (productResult) {
+      productResult.likes = req.body.likes;
+      productResult.save().then(() => {
+        res.status(201).json("likes atualizados satisfactoriamente");
+      });
+    } else {
+      res.status(404).json("Producto no encontrado");
+    }
+  });
+};
+
 //metodo para consultar un producto por su ID
 exports.getProductoById = (req, res) => {
   Product.findById(req.params.id).then((productResult) => {
+    if (productResult) {
+      res.status(200).json(productResult);
+    } else {
+      res.status(404).json("Producto no encontrado");
+    }
+  });
+};
+
+//metodo para consultar un producto por su codigo
+exports.getProductoByWord = (req, res) => {
+  const searchText = req.params.searchText;
+
+  // Crear un filtro para buscar coincidencias en los campos title y name
+  const filter = {
+    $or: [
+      { title: { $regex: searchText, $options: "i" } }, 
+      { name: { $regex: searchText, $options: "i" } }
+    ]
+  };
+
+  Product.find(filter).then((productResult) => {
+    if (productResult) {
+      res.status(200).json(productResult);
+    } else {
+      res.status(404).json("Producto no encontrado");
+    }
+  });
+};
+
+//metodo para consultar un producto por su categoria
+exports.getProductoByCategory = (req, res) => {
+  const categoryText = req.params.category;
+
+  // Crear un filtro para buscar coincidencias 
+  const filter = {
+    $or: [
+      { category: { $regex: categoryText, $options: "i" } }
+    ]
+  };
+
+  Product.find(filter).then((productResult) => {
     if (productResult) {
       res.status(200).json(productResult);
     } else {

@@ -1,32 +1,54 @@
-import ima1 from "../../img/prod5.PNG";
-import sombrero from "../../img/sombrero.png";
+import BotonApoyo from "../components/BotonApoyo";
+// import like from "../../img/like.png";
 import plus from "../../img/icons/plus.png";
 import minus from "../../img/icons/minus.png";
 import heart from "../../img/icons/heart_red.png";
 import heart2 from "../../img/icons/heart_red2.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import { useParams } from 'react-router-dom';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_live_51PYebbDujtx63ft0LDiJHsQgIzgcNe4prgZOqYJvrfzOTj2oFONXzUvspklEXY2XYlwnL4ImsFqm3LJvfOqu8UZM00XaMA3eBl"
+);
 
 const Detail = () => {
   const { id } = useParams();
   const [producto, setProducto] = useState([]);
-  const productoID = 2;
-  
-  console.log("este es el id" + id);
-  // const producto = {
-  //   id: 1,
-  //   imag: ima1,
-  //   name: "Lucia, Sara y Antonio",
-  //   title: "Grupo Alcantara",
-  //   location: "Plaza Mayor",
-  //   likes: "34",
-  //   text1:
-  //     "Cada moneda arrojada en su sombrero es un aplauso, un reconocimiento a su talento y un gesto de apoyo",
-  //   details:
-  //     "Hoy, mientras paseas por la calle y escuchas la melodía de Carlos, considera unirte a su audiencia efimera y ser parte de su historia. Tu ofrenda no solo alimenta su pasión, sino que alimenta a su familia",
-  //   helpways: "",
-  // };
+  const [amount, setAmount] = useState(5);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/products/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setProducto(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle error state or show a message to the user
+      }
+    }
+    fetchData();
+  }, [id]);
+
+  // Lógica para incrementar el valor del aporte
+  const handlePlusClick = () => {
+    setAmount((prevAmount) => prevAmount + 1);
+  };
+
+  // Lógica para decrementar el valor del aporte
+  const handleMinusClick = () => {
+    if (amount > 5) {
+      setAmount((prevAmount) => prevAmount - 1);
+    }
+  };
 
   // Estado para controlar la pestaña activa
   const [activeTab, setActiveTab] = useState("tab1");
@@ -36,17 +58,19 @@ const Detail = () => {
     setActiveTab(tab);
   };
 
-
-
   return (
     <div>
-      <p className="h3 mb-3 fw-normal">
-        Lo has visto en {producto.location} {productoID}
+      <p className="h4 mb-3 fw-normal d-flex flex-column justify-content-center align-items-center">
+        Lo has visto en {producto.location}
       </p>
-      <img src={producto.imag} alt="Location Icon" className="circular-image" />
+      <img
+        src={`${process.env.PUBLIC_URL}/img/${producto.imag}`}
+        alt="Location Icon"
+        className="circular-image"
+      />
 
-      <div className="container-detalle">
-        <div className="name-detalle">
+      <div className="container-detalle row">
+        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center name-detalle">
           <p className="text-detalle-name">{producto.name}</p>
           <p className="text-detalle-title">"{producto.title}"</p>
           <div className="control-rankin">
@@ -58,15 +82,30 @@ const Detail = () => {
             <p className="text-detalle-name"> {producto.likes}M</p>
           </div>
         </div>
-        <div className="control-aporte">
-          <img src={plus} alt="" className="icon" />
-          <img src={sombrero} alt="" className="sombrero-image" />
-          <img src={minus} alt="" className="icon" />
+        <div className="col-md-4 control-aporte ">
+          <button
+            className="icon-button circular-button control-aporte-item"
+            onClick={handlePlusClick}
+          >
+            {/* <img src={plus} alt="plus" className="iconAmount" /> */}
+            <div className="amount-display">+</div>
+          </button>
+          <div className="control-aporte-item">
+            {/* <img src={sombrero} alt="" className="sombrero-image" /> */}
+            <div className="amount-display">{amount} €</div>
+          </div>
+          <button
+            className="icon-button circular-button control-aporte-item"
+            onClick={handleMinusClick}
+          >
+            {/* <img src={minus} alt="" className="iconAmount" /> */}
+            <div className="amount-display">-</div>
+          </button>
         </div>
       </div>
 
-      <p className="h5 mb-3 fw-normal">{producto.text1}</p>
-      <div className="tabs-container">
+      <p className="h4 mb-3 fw-normal">{producto.invitation}</p>
+      <div className="tabs-container d-flex flex-column justify-content-center">
         <div className="tabs">
           <div
             className={`tab ${activeTab === "tab1" ? "active" : ""}`}
@@ -87,6 +126,12 @@ const Detail = () => {
           {activeTab === "tab2" && (
             <p>Contenido de la pestaña "Formas de ayudar"</p>
           )}
+        </div>
+
+        <div className="mt-4">
+          <Elements stripe={stripePromise}>
+            <BotonApoyo producto={producto} />
+          </Elements>
         </div>
       </div>
     </div>
