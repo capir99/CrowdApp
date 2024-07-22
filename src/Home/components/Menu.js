@@ -12,7 +12,16 @@ const Menu = ({ onSearch }) => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar
+      expand="lg"
+      className="bg-body-tertiary"
+      style={{
+        backgroundColor: "#f0f0f0",
+        padding: "5px",
+        borderRadius: "35px",
+        boxShadow: "0 4px 20px rgba(14,14,252,0.2)",
+      }}
+    >
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -42,11 +51,7 @@ const Menu = ({ onSearch }) => {
               className="nav-link"
             >
               <div className="center-content">
-                <img
-                  src={house_icon}
-                  alt="En el campo"
-                  className="menu-icon"
-                />
+                <img src={house_icon} alt="En el campo" className="menu-icon" />
                 <span>En el campo</span>
               </div>
             </Button>

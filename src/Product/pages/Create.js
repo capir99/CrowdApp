@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import pickImage from "../../img/icons/pick.PNG";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,8 @@ const Create = () => {
     invitation: "",
     details: "",
     helpways: "",
-    likes: "0", // Inicializado en 0, por ejemplo
+    likes: "0",
+    category: "",
   });
 
   const [previewImage, setPreviewImage] = useState(pickImage); // Estado para previsualizar la imagen
@@ -63,7 +64,6 @@ const Create = () => {
 
       alert("Registro exitoso");
       navigate("/home");
-      
     } catch (error) {
       console.error("Error:", error);
     }
@@ -94,11 +94,10 @@ const Create = () => {
                 {previewImage && (
                   <div className="mt-2 d-flex justify-content-center align-items-center">
                     <div className="pick-image-container border-0">
-                      <Image
+                      <img
                         src={previewImage}
                         alt="Preview"
-                        fluid
-                        className="pick-image circular-image"
+                        className="circular-image"
                       />
                     </div>
                   </div>

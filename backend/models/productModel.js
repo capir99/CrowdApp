@@ -9,6 +9,7 @@ const product = mongoose.Schema({
   details: { type: String },
   helpways: { type: String },
   likes: { type: Number, default: 0 },
+  category: { type: String },
 });
 
 module.exports = mongoose.model("product", product, "Products");

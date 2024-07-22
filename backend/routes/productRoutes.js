@@ -16,14 +16,17 @@ router.get(
   "/searchCategory/:category",
   productController.getProductoByCategory
 );
-
+//Actualizar producto
+router.post("/modify/:id", productController.modifyProducto);
+//Eliminar producto
+router.delete("/remove/:id", productController.removeProducto);
 //Consultar producto por Id
 router.get("/:id", productController.getProductoById);
 
+
 // //Listar productos en stock
 // router.get("/listStock", productController.getProductosStock);
-// //Eliminar producto
-// router.delete("/remove/:id", productController.removeProducto);
+
 
 // //Consultar producto por codigo
 // router.get("/search/:code", productController.getProductoByCode);

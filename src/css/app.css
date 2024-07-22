@@ -184,9 +184,11 @@
 .control-aporte-item {
   margin-right: 1.5rem;
   font-size: 1.4rem;
-
 }
 
+.amount-display {
+  font-size: 1.2rem;
+}
 
 .control-aporte .icon {
   margin: 0 25px; /* Espacio entre los iconos y la imagen del sombrero */
@@ -234,8 +236,8 @@
 }
 
 .control-rankin-heart{
-  width: 2rem; 
-  height: 2rem;
+  width: 1.5rem; 
+  height: 1.5rem;
 }
 
 
@@ -318,7 +320,7 @@
 /* CREACION PRODUCTO */
 
 .action-image {
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 

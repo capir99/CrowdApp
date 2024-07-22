@@ -26,6 +26,7 @@ exports.addProduct = (req, res) => {
     details: req.body.details,
     helpways: req.body.helpways,
     likes: req.body.likes,
+    category: req.body.category,
   });
   product.save().then((createdProduct) => {
     res.status(201).json("Producto creado satisfactoriamente");
@@ -66,9 +67,9 @@ exports.getProductoByWord = (req, res) => {
   // Crear un filtro para buscar coincidencias en los campos title y name
   const filter = {
     $or: [
-      { title: { $regex: searchText, $options: "i" } }, 
-      { name: { $regex: searchText, $options: "i" } }
-    ]
+      { title: { $regex: searchText, $options: "i" } },
+      { name: { $regex: searchText, $options: "i" } },
+    ],
   };
 
   Product.find(filter).then((productResult) => {
@@ -84,11 +85,9 @@ exports.getProductoByWord = (req, res) => {
 exports.getProductoByCategory = (req, res) => {
   const categoryText = req.params.category;
 
-  // Crear un filtro para buscar coincidencias 
+  // Crear un filtro para buscar coincidencias
   const filter = {
-    $or: [
-      { category: { $regex: categoryText, $options: "i" } }
-    ]
+    $or: [{ category: { $regex: categoryText, $options: "i" } }],
   };
 
   Product.find(filter).then((productResult) => {
@@ -97,6 +96,37 @@ exports.getProductoByCategory = (req, res) => {
     } else {
       res.status(404).json("Producto no encontrado");
     }
+  });
+};
+
+//metodo para modificar un producto existente
+exports.modifyProducto = (req, res) => {
+  const filter = { _id: req.params.id };
+  Product.findOne(filter).then((productResult) => {
+    if (productResult) {
+      productResult.imag = req.body.imag;
+      productResult.name = req.body.name;
+      productResult.title = req.body.title;
+      productResult.location = req.body.location;
+      productResult.invitation = req.body.invitation;
+      productResult.details = req.body.details;
+      productResult.helpways = req.body.helpways;
+      productResult.likes = req.body.likes;
+      productResult.category = req.body.category;
+      productResult.save().then(() => {
+        res.status(201).json("Producto actualizado satisfactoriamente");
+      });
+    } else {
+      res.status(404).json("Producto no encontrado");
+    }
+  });
+};
+
+//metodo para eliminar un producto
+exports.removeProducto = (req, res) => {
+  const filter = { _id: req.params.id };
+  Product.deleteOne(filter).then(() => {
+    res.status(201).json("Producto eliminado satisfactoriamente");
   });
 };
 
@@ -114,14 +144,6 @@ exports.getProductoByCategory = (req, res) => {
 //     .catch((err) => {
 //       console.log("error:", err);
 //     });
-// };
-
-// //metodo para eliminar un producto
-// exports.removeProducto = (req, res) => {
-//   const filter = { _id: req.params.id };
-//   Producto.deleteOne(filter).then(() => {
-//     res.status(201).json("Producto eliminado satisfactoriamente");
-//   });
 // };
 
 // //metodo para consultar un producto por su codigo
