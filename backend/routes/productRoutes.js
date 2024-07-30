@@ -24,11 +24,5 @@ router.delete("/remove/:id", productController.removeProducto);
 router.get("/:id", productController.getProductoById);
 
 
-// //Listar productos en stock
-// router.get("/listStock", productController.getProductosStock);
-
-
-// //Consultar producto por codigo
-// router.get("/search/:code", productController.getProductoByCode);
 
 module.exports = router;

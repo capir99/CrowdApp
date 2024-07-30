@@ -4,6 +4,7 @@ var cors = require("cors");
 
 const productRoutes = require("./routes/productRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 require("dotenv").config();
 
@@ -26,5 +27,8 @@ app.use(cors());
 
 app.use("/api/payment", paymentRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/user", userRoutes);
+
+
 
 module.exports = app;

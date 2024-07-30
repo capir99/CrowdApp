@@ -9,8 +9,6 @@ const Home = () => {
   const [productos, setProductos] = useState([]);
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [, setSearchTerm] = useState("");
- 
-
 
   // Función para cargar todos los productos iniciales
   useEffect(() => {
@@ -107,6 +105,7 @@ const Home = () => {
           setProductos={setProductos}
         />
       </div>
+      <p className="mt-5 mb-3 text-muted">&copy; NanaPass-2024</p>
     </div>
   );
 };

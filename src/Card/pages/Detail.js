@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Container } from "react-bootstrap";
+import { useMediaQuery } from "react-responsive";
 
 const stripePromise = loadStripe(
   "pk_live_51PYebbDujtx63ft0LDiJHsQgIzgcNe4prgZOqYJvrfzOTj2oFONXzUvspklEXY2XYlwnL4ImsFqm3LJvfOqu8UZM00XaMA3eBl"
@@ -55,6 +56,8 @@ const Detail = () => {
     setActiveTab(tab);
   };
 
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+
   return (
     <Container>
       <p className="h4 mb-3 fw-normal text-center">
@@ -63,7 +66,11 @@ const Detail = () => {
       <img
         src={`${process.env.PUBLIC_URL}/img/${producto.imag}`}
         alt="pickImage"
-        className="circular-image mx-auto d-block"
+        className={
+          isMobile
+            ? "full-width-image mx-auto d-block"
+            : "circular-image mx-auto d-block"
+        }
       />
 
       <div className="container-detalle row container-lg">
@@ -121,7 +128,7 @@ const Detail = () => {
         </div>
 
         {/* Espacio adicional */}
-        <div style={{ marginBottom: '20px' }}></div>
+        <div style={{ marginBottom: "20px" }}></div>
 
         <div className="mt-4 mb-4">
           <Elements stripe={stripePromise}>
@@ -131,7 +138,7 @@ const Detail = () => {
       </div>
 
       {/* Espacio adicional para separar los botones */}
-      <div style={{ marginBottom: '40px' }}></div>
+      <div style={{ marginBottom: "40px" }}></div>
     </Container>
   );
 };
