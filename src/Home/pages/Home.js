@@ -1,11 +1,12 @@
 import "../../css/app.css";
-import logo from "../../logo.PNG";
+import logo from "../../logo.png";
 import React, { useState, useEffect } from "react";
 import ListaProductos from "../components/ListaProductos";
 import Menu from "../components/Menu";
 import Busqueda from "../components/Busqueda";
 
 const Home = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [productos, setProductos] = useState([]);
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [, setSearchTerm] = useState("");
@@ -20,10 +21,7 @@ const Home = () => {
             "Content-Type": "application/json",
           },
         };
-        const response = await fetch(
-          "http://localhost:3001/api/products/list",
-          config
-        );
+        const response = await fetch(`${apiUrl}/products/list`, config);
         const data = await response.json();
         if (data) {
           setProductos(data);
@@ -34,7 +32,7 @@ const Home = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [apiUrl]);
 
   // Función para manejar cambios en el término de búsqueda
   const handleSearch = async (searchTerm) => {
@@ -52,7 +50,7 @@ const Home = () => {
         },
       };
       const response = await fetch(
-        `http://localhost:3001/api/products/search/${searchTerm}`,
+        `${apiUrl}/products/search/${searchTerm}`,
         config
       );
       const data = await response.json();
@@ -75,7 +73,7 @@ const Home = () => {
         },
       };
       const response = await fetch(
-        `http://localhost:3001/api/products/searchCategory/${setSearchcategory}`,
+        `${apiUrl}/products/searchCategory/${setSearchcategory}`,
         config
       );
       const data = await response.json();

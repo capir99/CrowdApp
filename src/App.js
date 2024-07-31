@@ -1,10 +1,12 @@
 import "./css/app.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Signup from "./Shared/pages/Singup";
-import EmailVerification from "./Shared/pages/EmailVerification";
-import Detail from "./Card/pages/Detail";
+import Signup from "./Login/pages/Singup";
+import EmailVerification from "./Login/pages/EmailVerification";
+import Terms from "./Shared/pages/Terms";
+import Detail from "./Product/pages/Detail";
 import Home from "./Home/pages/Home";
 import Error from "./Shared/pages/Error";
+import SinAutorizacion from "./Shared/pages/SinAutorizacion";
 import CreateProduct from "./Product/pages/Create";
 import UpdateProduct from "./Product/pages/Update";
 import ProductCatalog from "./Product/pages/Catalog";
@@ -19,13 +21,40 @@ import {
   Navigate,
 } from "react-router-dom";
 
+// Función para obtener el rol del usuario
+const useUserRole = () => {
+  const rol = localStorage.getItem("user-rol");
+  return rol ? rol.replace(/^"(.*)"$/, "$1") : null;
+};
+
+// Función para obtener el estado del usuario
+const useUserState = () => {
+  const state = parseInt(localStorage.getItem("user-state"), 10);
+  return isNaN(state) ? null : state;
+};
+
+// Componente que maneja la autorización
+const ProtectedRoute = ({ element, roleRequired, stateRequired }) => {
+  const role = useUserRole();
+  const state = useUserState();
+
+  // Asegurarse de que el rol y el estado están definidos y compararlos con los requeridos
+  if (role === roleRequired && state === stateRequired) {
+    return element;
+  } else {
+    return <Navigate to="/SinAutorizacion" replace />;
+  }
+};
+
 function App() {
   const stripePromise = loadStripe(
     "pk_test_51PYebbDujtx63ft0eF7xGn86AtB6MkXeQE5QSFmlTrrDA0mWJEQ3HSBOu1hudKkVrTjB3pnYFz1Wd80e7PpiMqlU00sGIgxCga"
   );
 
-  // const rol = localStorage.getItem("rol");
-  // const estado = localStorage.getItem("estado");
+  // Borrar el local storage
+  // ["token", "lastUrl", "user-email", "user-name", "user-surname", "user-state", "user-rol"].forEach(
+  //   (key) => localStorage.removeItem(key)
+  // );
 
   return (
     <div className="App">
@@ -37,15 +66,35 @@ function App() {
             <Routes>
               <Route path="/Signup" element={<Signup />} />
               <Route path="/verify-email" element={<EmailVerification />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="/Detail" element={<Detail />} />
               <Route path="/Detail/:id" element={<Detail />} />
               <Route path="/Home" element={<Home />} />
-              <Route path="/Create" element={<CreateProduct />} />
-              <Route path="/Catalog" element={<ProductCatalog />} />
               <Route path="/Update/:id" element={<UpdateProduct />} />
               <Route path="/" element={<Home />} />
               <Route path="/error" element={<Error />} />
               <Route path="*" element={<Navigate to="/error" />} />
+              <Route path="/SinAutorizacion" element={<SinAutorizacion />} />
+              <Route
+                path="/Create"
+                element={
+                  <ProtectedRoute
+                    element={<CreateProduct />}
+                    roleRequired="us-admin"
+                    stateRequired={1}
+                  />
+                }
+              />
+              <Route
+                path="/Catalog"
+                element={
+                  <ProtectedRoute
+                    element={<ProductCatalog />}
+                    roleRequired="us-admin"
+                    stateRequired={1}
+                  />
+                }
+              />
             </Routes>
           </GoogleOAuthProvider>
         </Router>

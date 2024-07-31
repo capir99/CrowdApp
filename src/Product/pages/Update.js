@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const Update = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -29,9 +30,7 @@ const Update = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
-          `http://localhost:3001/api/products/${id}`
-        );
+        const response = await fetch(`${apiUrl}/products/${id}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -44,7 +43,7 @@ const Update = () => {
       }
     }
     fetchData();
-  }, [id]);
+  }, [id, apiUrl]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0]; // Obtener el archivo de imagen seleccionado
@@ -82,7 +81,7 @@ const Update = () => {
         body: JSON.stringify(formData),
       };
       const response = await fetch(
-        "http://localhost:3001/api/products/modify/" + formData._id,
+        `${apiUrl}/products/modify/` + formData._id,
         config
       );
       console.log("respuesta");

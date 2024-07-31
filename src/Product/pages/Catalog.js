@@ -7,6 +7,7 @@ import borrar from "../../img/svg/delete.svg";
 import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   //hooks para actualizar lista de productos, producto seleccionado y visibilidad de la pantalla modal
@@ -25,10 +26,7 @@ const Catalog = () => {
         },
       };
       if (filtro.length === 0) {
-        const response = await fetch(
-          "http://localhost:3001/api/products/list",
-          config
-        );
+        const response = await fetch(`${apiUrl}/products/list`, config);
         const data = await response.json();
         if (data) {
           setFilteredProducts(data);
@@ -36,7 +34,7 @@ const Catalog = () => {
       }
     }
     fetchData();
-  }, [filtro]);
+  }, [filtro, apiUrl]);
 
   // funciones visibilidad de la pantalla modal
   const handleShow = (id) => {
@@ -50,9 +48,7 @@ const Catalog = () => {
   //Función para consultar el producto a partir de su id seleccionado desde la tabla
   const productoSeleccion = (e) => {
     async function fetchData() {
-      const response = await fetch(
-        "http://localhost:3001/api/products/" + e.target.id
-      );
+      const response = await fetch(`${apiUrl}/products/` + e.target.id);
       const data = await response.json();
       if (data) {
         setproductoSel(data);
@@ -69,7 +65,7 @@ const Catalog = () => {
         method: "DELETE",
       };
       const response = await fetch(
-        "http://localhost:3001/api/products/remove/" + filtro,
+        `${apiUrl}/products/remove/` + filtro,
         config
       );
       const data = await response.json();
@@ -84,7 +80,7 @@ const Catalog = () => {
   const productSearch = (e) => {
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3001/api/products/search/" + e.target.value
+        `${apiUrl}/products/search/` + e.target.value
       );
       const datos = await response.json();
       if (datos !== "Producto no encontrado") {

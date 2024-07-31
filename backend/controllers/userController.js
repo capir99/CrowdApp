@@ -87,7 +87,6 @@ exports.loginUser = async (req, res) => {
   const email = req.body.username;
   const password = req.body.password;
 
-
   if (!email || !password) {
     return res
       .status(400)
@@ -96,7 +95,7 @@ exports.loginUser = async (req, res) => {
 
   try {
     // Buscar al usuario por su email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
 
     if (!user) {
       return res

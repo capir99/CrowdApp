@@ -295,11 +295,7 @@ const Signup = ({ handleClose }) => {
             <Form.Label>
               Acepto los{" "}
               <a href="/terms" target="_blank">
-                Términos de Servicio
-              </a>{" "}
-              y la{" "}
-              <a href="/privacy" target="_blank">
-                Declaración de Privacidad
+                Términos de Servicio y la Declaración de Privacidad
               </a>{" "}
               *
             </Form.Label>

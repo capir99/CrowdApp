@@ -13,6 +13,7 @@ const stripePromise = loadStripe(
 );
 
 const Detail = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const [producto, setProducto] = useState([]);
   const [amount, setAmount] = useState(5);
@@ -20,9 +21,7 @@ const Detail = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
-          `http://localhost:3001/api/products/${id}`
-        );
+        const response = await fetch(`${apiUrl}/products/${id}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -34,7 +33,7 @@ const Detail = () => {
       }
     }
     fetchData();
-  }, [id]);
+  }, [id, apiUrl]);
 
   // Lógica para incrementar el valor del aporte
   const handlePlusClick = () => {

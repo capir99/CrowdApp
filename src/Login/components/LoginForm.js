@@ -3,20 +3,15 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 
-// import { useHistory } from "react-router-dom";
 // const jwt = require("jsonwebtoken");
 
 const LoginForm = ({ handleClose }) => {
-  localStorage.removeItem("token"); //retira cualquier token de autenticación que exista
-  localStorage.removeItem("user-email");
-  localStorage.removeItem("user-name");
-
   // Función para manejar el inicio de sesión
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
-    console.log("usuario :", username);
     try {
       const config = {
         method: "POST", // Cambiado a POST
@@ -34,25 +29,27 @@ const LoginForm = ({ handleClose }) => {
       );
       const data = await response.json();
 
-      if (data.user.email) {
+      if (!data.message) {
         // Almacenar los datos del usuario en localStorage
         localStorage.setItem("user-email", JSON.stringify(data.user.email));
         localStorage.setItem("user-name", JSON.stringify(data.user.name));
-        handleClose(); // Cerrar el modal en caso de éxito
+        localStorage.setItem("user-surname", JSON.stringify(data.user.surname));
+        localStorage.setItem("user-rol", JSON.stringify(data.user.rol));
+        localStorage.setItem("user-state", JSON.stringify(data.user.state));
+        handleClose();
       } else {
-        console.error(
-          "Error en el inicio de sesión:",
-          data.message || "Error desconocido"
-        );
+        // Actualizar el estado de error
+        setError(data.message || "Error desconocido");
       }
     } catch (error) {
+      setError("Error al autenticarse: " + error.message);
       console.error("Error al autenticarse:", error);
     }
   };
 
-  const respuestaGoogle = (resp) => {
-    console.log(resp);
-  };
+  // const respuestaGoogle = (resp) => {
+  //   console.log(resp);
+  // };
   // const history = useHistory();
   // const respuestaGoogle = (respuesta) => {
   //   console.log(respuesta);
@@ -109,6 +106,13 @@ const LoginForm = ({ handleClose }) => {
 
   return (
     <Form>
+      {error && (
+        <div
+          style={{ color: "red", marginBottom: "15px", textAlign: "center" }}
+        >
+          {error}
+        </div>
+      )}
       <Form.Group
         controlId="usuario"
         className="d-flex justify-content-center mb-4"

@@ -6,6 +6,7 @@ import pickImage from "../../img/icons/pick.PNG";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   // Estado para almacenar los valores del formulario
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ const Create = () => {
     });
   };
 
-  //Función para registtrar producto
+  //Función para registrar producto
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = {
@@ -54,10 +55,7 @@ const Create = () => {
       body: JSON.stringify(formData),
     };
     try {
-      const response = await fetch(
-        "http://localhost:3001/api/products/add/",
-        config
-      );
+      const response = await fetch(`${apiUrl}/products/add/`, config);
       if (!response.ok) {
         throw new Error("Error al agregar artista");
       }

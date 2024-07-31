@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Container, Button, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
-import LoginForm from "../../Shared/components/LoginForm";
+import LoginForm from "../../Login/components/LoginForm";
 
 const stripePromise = loadStripe(
   "pk_test_51PYebbDujtx63ft0eF7xGn86AtB6MkXeQE5QSFmlTrrDA0mWJEQ3HSBOu1hudKkVrTjB3pnYFz1Wd80e7PpiMqlU00sGIgxCga"
@@ -11,38 +11,44 @@ const stripePromise = loadStripe(
 
 // Componente principal para el botón de pago
 const BotonApoyo = ({ producto }) => {
-  const [sessionId] = useState(null);
+  const [sessionId, setSessionId] = useState(null);
 
   const handleApoyoClick = async () => {
     // Obtener la URL actual y guardar la URL en localStorage
-    const currentUrl = window.location.href; 
+    const currentUrl = window.location.href;
     localStorage.setItem("lastUrl", currentUrl);
 
-    handleShow();
-    // try {
-    //   const config = {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   };
+    // Obtener la variable que evidencia si el usuario actual esta autenticado o no
+    const auth_user = localStorage.getItem("user-email");
 
-    //   // Llamada a la API para obtener la sesión de pago desde el backend
-    //   const response = await fetch(
-    //     "http://localhost:3001/api/payment/session",
-    //     config
-    //   );
-    //   const session = await response.json();
+    if (auth_user !== null && auth_user.trim() !== "") {
+      try {
+        const config = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
-    //   if (session && session.id) {
-    //     console.log("ID de sesión recibido:", session.id);
-    //     setSessionId(session.id); // Guarda el ID de sesión en el estado local
-    //   } else {
-    //     console.error("No se recibió el ID de sesión de pago.");
-    //   }
-    // } catch (error) {
-    //   console.error("Error al iniciar el flujo de pago:", error);
-    // }
+        // Llamada a la API para obtener la sesión de pago desde el backend
+        const response = await fetch(
+          "http://localhost:3001/api/payment/session",
+          config
+        );
+        const session = await response.json();
+
+        if (session && session.id) {
+          console.log("ID de sesión recibido:", session.id);
+          setSessionId(session.id); // Guarda el ID de sesión en el estado local
+        } else {
+          console.error("No se recibió el ID de sesión de pago.");
+        }
+      } catch (error) {
+        console.error("Error al iniciar el flujo de pago:", error);
+      }
+    } else {
+      handleShow();
+    }
   };
 
   // funciones visibilidad del cudro de autenticación
@@ -56,7 +62,7 @@ const BotonApoyo = ({ producto }) => {
 
   return (
     <Container>
-      <Button variant="primary" onClick={handleApoyoClick}>
+      <Button variant="primary" onClick={handleApoyoClick} className="mb-4">
         Apoyar a {producto.name}
       </Button>
       {sessionId && (

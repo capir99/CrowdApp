@@ -3,8 +3,6 @@ import Producto from "./Producto";
 import { useNavigate } from "react-router-dom";
 
 const ListaProductos = ({ productos, setProductos }) => {
-  // const [productos, setProductos] = useState([]);
-
   const navigate = useNavigate();
 
   //Función enviar el id del producto seleccionado
