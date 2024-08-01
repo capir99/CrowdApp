@@ -13,6 +13,8 @@ import ProductCatalog from "./Product/pages/Catalog";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 import {
   BrowserRouter as Router,
@@ -47,17 +49,11 @@ const ProtectedRoute = ({ element, roleRequired, stateRequired }) => {
 };
 
 function App() {
-  const stripePromise = loadStripe(
-    "pk_test_51PYebbDujtx63ft0eF7xGn86AtB6MkXeQE5QSFmlTrrDA0mWJEQ3HSBOu1hudKkVrTjB3pnYFz1Wd80e7PpiMqlU00sGIgxCga"
-  );
-
-  // Borrar el local storage
-  // ["token", "lastUrl", "user-email", "user-name", "user-surname", "user-state", "user-rol"].forEach(
-  //   (key) => localStorage.removeItem(key)
-  // );
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PROMISE);
 
   return (
     <div className="App">
+      <ToastContainer />
       <Elements stripe={stripePromise}>
         <Router>
           <GoogleOAuthProvider

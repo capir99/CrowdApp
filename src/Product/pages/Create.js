@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Row, Col } from "react-bootstrap";
@@ -60,10 +61,11 @@ const Create = () => {
         throw new Error("Error al agregar artista");
       }
 
-      alert("Registro exitoso");
-      navigate("/home");
+      toast.success("Registro exitoso nuevo producto");
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
+      toast.error(error.message);
     }
   };
 
@@ -225,7 +227,7 @@ const Create = () => {
                 </Row>
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" className="mb-5">
                 Registrar
               </Button>
             </Form>

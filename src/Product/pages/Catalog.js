@@ -5,6 +5,7 @@ import Image from "react-bootstrap/Image";
 import editar from "../../img/svg/edit.svg";
 import borrar from "../../img/svg/delete.svg";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Catalog = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -64,13 +65,19 @@ const Catalog = () => {
       const config = {
         method: "DELETE",
       };
-      const response = await fetch(
-        `${apiUrl}/products/remove/` + filtro,
-        config
-      );
-      const data = await response.json();
-      if (data) {
-        navigate("/home");
+      try {
+        const response = await fetch(
+          `${apiUrl}/products/remove/` + filtro,
+          config
+        );
+        const data = await response.json();
+        if (data) {
+          toast.success("Eminación de producto exitosa");
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        toast.error(error.message);
       }
     }
     fetchData();

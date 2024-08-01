@@ -1,3 +1,4 @@
+require("dotenv").config();
 const User = require("../models/userModel");
 
 // Configuración del transportador de Nodemailer
@@ -6,14 +7,20 @@ const crypto = require("crypto");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "nanapasscrowdapp@gmail.com",
-    pass: "ldbj iawa yztb uszk", // clave de aplicación de google https://myaccount.google.com/apppasswords
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS, // clave de aplicación de google https://myaccount.google.com/apppasswords
   },
 });
 
 // Método para crear un nuevo usuario
 exports.addUser = async (req, res) => {
   try {
+    // Verificar si el email ya existe en la base de datos
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
+      return res.status(409).json("El email ya está registrado.");
+    }
+
     // Generar un código de confirmación
     const confirmationCode = crypto.randomBytes(20).toString("hex");
 
@@ -31,20 +38,22 @@ exports.addUser = async (req, res) => {
       isConfirmed: false, // Inicialmente no está confirmado
     });
 
+    const back_url = process.env.BACKEND_URL;
+
     // Guardar el usuario
     const createdUser = await user.save();
 
     // URL de verificación
-    const frontendUrl = `http://localhost:3000/verify-email?code=${confirmationCode}&email=${encodeURIComponent(
+    const enlaceUrl = `${back_url}/verify-email?code=${confirmationCode}&email=${encodeURIComponent(
       createdUser.email
     )}`;
 
     // Enviar el correo con el código de confirmación
     const mailOptions = {
-      from: "nanapasscrowdapp@gmail.com",
+      from: process.env.MAIL_USER,
       to: createdUser.email,
       subject: "NanaPass - confirmación de correo",
-      text: `Por favor, confirma tu correo electrónico usando el siguiente enlace: ${frontendUrl}`,
+      text: `Por favor, confirma tu correo electrónico usando el siguiente enlace: ${enlaceUrl}`,
     };
 
     await transporter.sendMail(mailOptions);
@@ -57,6 +66,54 @@ exports.addUser = async (req, res) => {
     res.status(500).json("Error al crear usuario");
   }
 };
+// // Método para crear un nuevo usuario
+// exports.addUser = async (req, res) => {
+//   try {
+//     // Generar un código de confirmación
+//     const confirmationCode = crypto.randomBytes(20).toString("hex");
+
+//     // Crear un nuevo usuario
+//     const user = new User({
+//       name: req.body.name,
+//       surname: req.body.surname,
+//       date_creation: req.body.date_creation,
+//       email: req.body.email,
+//       phone: req.body.phone,
+//       state: req.body.state,
+//       rol: req.body.rol,
+//       password: req.body.password,
+//       confirmationCode: confirmationCode, // Asignar el código de confirmación
+//       isConfirmed: false, // Inicialmente no está confirmado
+//     });
+
+//     const back_url = process.env.BACKEND_URL;
+
+//     // Guardar el usuario
+//     const createdUser = await user.save();
+
+//     // URL de verificación
+//     const enlaceUrl = `${back_url}/verify-email?code=${confirmationCode}&email=${encodeURIComponent(
+//       createdUser.email
+//     )}`;
+
+//     // Enviar el correo con el código de confirmación
+//     const mailOptions = {
+//       from: "nanapasscrowdapp@gmail.com",
+//       to: createdUser.email,
+//       subject: "NanaPass - confirmación de correo",
+//       text: `Por favor, confirma tu correo electrónico usando el siguiente enlace: ${enlaceUrl}`,
+//     };
+
+//     await transporter.sendMail(mailOptions);
+
+//     res
+//       .status(201)
+//       .json("Usuario creado exitosamente. Por favor, verifica tu correo.");
+//   } catch (error) {
+//     console.error("Error al crear usuario:", error);
+//     res.status(500).json("Error al crear usuario");
+//   }
+// };
 
 exports.confirmEmail = async (req, res) => {
   try {
@@ -68,7 +125,7 @@ exports.confirmEmail = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .json("Código de confirmación inválido o usuario no encontrado.");
+        .json("Código de confirmación inválido o ya ha sido utilizado.");
     }
 
     // Confirmar el correo del usuario

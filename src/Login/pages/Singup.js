@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { FaAddressCard, FaAt, FaPhoneVolume } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -8,6 +9,7 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 const Signup = ({ handleClose }) => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   // Fecha actual en formato YYYY-MM-DD
@@ -81,6 +83,10 @@ const Signup = ({ handleClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Extraer la parte relativa de la URL
+    const storedUrl = localStorage.getItem("lastUrl");
+    const relativeUrl = new URL(storedUrl).pathname + new URL(storedUrl).search;
+
     // Validate passwords and terms acceptance before submission
     const { password, password_confirmation, termsAccepted } = formData;
     const passwordsMatch = password === password_confirmation;
@@ -108,19 +114,24 @@ const Signup = ({ handleClose }) => {
         body: JSON.stringify(formData),
       };
       try {
-        const response = await fetch(
-          "http://localhost:3001/api/user/add/",
-          config
-        );
+        const response = await fetch(`${apiUrl}/user/add/`, config);
 
-        if (!response.ok) {
+        if (response.status === 409) {
+          // Manejar el caso cuando el email ya está registrado
+          const errorData = await response.json();
+          throw new Error(errorData.message || "El email ya está registrado.");
+        } else if (!response.ok) {
+          // Manejar otros errores
           throw new Error("Error al registrar usuario");
         }
 
-        alert("Registro exitoso");
-        navigate("/home");
+        toast.success(
+          "Registro exitoso, a continuación se ha enviado un mensaje de texto al correo eletrónico registrado por usted mediente el cual podrá activar su cuenta "
+        );
+        navigate(relativeUrl);
       } catch (error) {
         console.error("Error:", error);
+        toast.error(error.message);
       }
 
       // Resetear el formulario después de enviar los datos
@@ -258,7 +269,9 @@ const Signup = ({ handleClose }) => {
 
         <Row className="mb-3">
           <Col md={4}>
-            <Form.Label>Confirmar <RiLockPasswordFill className="icon-color" />*</Form.Label>
+            <Form.Label>
+              Confirmar <RiLockPasswordFill className="icon-color" />*
+            </Form.Label>
           </Col>
           <Col md={8}>
             <Form.Control

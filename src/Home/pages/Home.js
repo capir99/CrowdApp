@@ -64,7 +64,6 @@ const Home = () => {
 
   // Función para manejar filtro por categoria
   const handleCategorySearch = async (setSearchcategory) => {
-    console.log(setSearchcategory);
     try {
       const config = {
         method: "GET",

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Row, Col } from "react-bootstrap";
@@ -51,7 +52,6 @@ const Update = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData({ ...formData, imag: file.name }); // Guardar el nombre del archivo en producto
-        console.log("La imagen cambiada es: ", formData.imag);
         setPreviewImage(reader.result); // Mostrar la imagen como previsualización
       };
       reader.readAsDataURL(file); // Leer el archivo como URL de datos
@@ -70,7 +70,6 @@ const Update = () => {
   //Función para actualizar producto
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Esta es la imagen ", formData);
     try {
       const config = {
         method: "POST",
@@ -84,14 +83,15 @@ const Update = () => {
         `${apiUrl}/products/modify/` + formData._id,
         config
       );
-      console.log("respuesta");
+
       if (!response.ok) {
         throw new Error("Error al actualizar artista");
       }
-      alert("Actualización exitosa");
-      navigate("/home");
+      toast.success(`Actualización del producto (${formData._id}) exitosa `);
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
+      toast.error(error.message);
     }
   };
 
@@ -259,7 +259,7 @@ const Update = () => {
                 </Row>
               </Form.Group>
 
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" className="mb-5">
                 Actualizar
               </Button>
             </Form>

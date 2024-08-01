@@ -7,7 +7,6 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 const Menu = ({ onSearch }) => {
   const handleButtonSelection = (event) => {
     const name = event.currentTarget.getAttribute("name");
-    console.log("Pulsado:", name);
     onSearch(name);
   };
 

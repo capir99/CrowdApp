@@ -6,6 +6,7 @@ import { GoogleLogin } from "@react-oauth/google";
 // const jwt = require("jsonwebtoken");
 
 const LoginForm = ({ handleClose }) => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   // Función para manejar el inicio de sesión
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,10 +24,7 @@ const LoginForm = ({ handleClose }) => {
           password,
         }),
       };
-      const response = await fetch(
-        "http://localhost:3001/api/user/login",
-        config
-      );
+      const response = await fetch(`${apiUrl}/user/login`, config);
       const data = await response.json();
 
       if (!data.message) {
