@@ -183,3 +183,72 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: "Error de Servidor" });
   }
 };
+
+//metodo para consultar un usuario por su email
+exports.getUserByEmail = (req, res) => {
+  const searchEmail = req.params.searchEmail;
+
+  // Crear un filtro para buscar coincidencias en el campo email
+  const filter = {
+    $or: [{ email: { $regex: searchEmail, $options: "i" } }],
+  };
+
+  User.find(filter).then((userResult) => {
+    if (userResult) {
+      res.status(200).json(userResult);
+    } else {
+      res.status(404).json("Usuario no encontrado");
+    }
+  });
+};
+
+// //metodo para modificar un usuario existente desde usuario
+// exports.modifyUser = (req, res) => {
+//   console.log("Encontre el id: ", req.params.id);
+//   const filter = { _id: req.params.id };
+//   console.log("Encontre : ", filter);
+//   User.findOne(filter).then((userResult) => {
+//     if (userResult) {
+
+//       console.log("valor : ", req.body.name);
+//       userResult.name = req.body.name;
+//       userResult.surname = req.body.surname;
+//       userResult.phone = req.body.phone;
+//       userResult.email = req.body.email;
+//       userResult.password = req.body.password;
+//       // userResult.save().then(() => {
+//       //   res
+//       //     .status(201)
+//       //     .json("Datos básicos usuario actualizados satisfactoriamente");
+//       // });
+//     } else {
+//       res.status(404).json("Usuario no encontrado");
+//     }
+//   });
+// };
+
+exports.modifyUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const userResult = await User.findById(userId);
+
+    if (userResult) {
+      userResult.name = req.body.name || userResult.name;
+      userResult.surname = req.body.surname || userResult.surname;
+      userResult.phone = req.body.phone || userResult.phone;
+      userResult.email = req.body.email || userResult.email;
+      userResult.password = req.body.password || userResult.password; // Corregido
+
+      await userResult.save();
+
+      res
+        .status(200)
+        .json("Datos básicos del usuario actualizados satisfactoriamente");
+    } else {
+      res.status(404).json("Usuario no encontrado");
+    }
+  } catch (error) {
+    console.error("Error al actualizar el usuario:", error);
+    res.status(500).json("Error interno del servidor");
+  }
+};

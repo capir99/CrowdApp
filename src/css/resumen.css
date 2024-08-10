@@ -1,0 +1,168 @@
+/* Dimensiones Modal */
+.modal-custom-res .modal-dialog {
+  max-width: 50%; /* El modal ocupará el 80% del ancho de la pantalla */
+}
+
+.modal-custom-res .modal-content {
+  width: 100%; /* Asegura que el contenido del modal ocupe el ancho completo del diálogo */
+}
+
+
+
+/* Cuerpo del modal  */
+
+
+/* Primera linea  */
+
+
+.circular-image-resume {   
+  border-radius: 50%;
+  overflow: hidden;
+  width: 7rem; 
+  height: 7rem;
+  object-fit: cover;
+}
+
+.container-res {
+  width: 10rem;
+
+}
+
+.text-container-res1 {
+  display: flex;
+  flex-direction: column; /* Coloca los textos uno encima del otro */
+  align-items: center; 
+  /* justify-content: center;  */
+  margin: None;
+
+}
+
+.text-container-res2 {
+  display: flex;
+  flex-direction: column; /* Coloca los textos uno encima del otro */
+  align-items: left; 
+  margin: None;
+  
+
+}
+
+.text-res1 {
+  width: 20rem;
+  font-size: 1.2rem; /* Tamaño del texto */
+  color: rgb(78, 78, 78); /* Color del texto */
+  font-family: 'Courier New', monospace; /* Tipo de letra del texto */
+  font-weight: bold; /* Aplica negrilla al texto */
+  
+}
+
+.text-rs2 {
+  font-size: 1rem; /* Tamaño del texto inferior */
+  color: rgb(44, 45, 44); /* Color del texto inferior */
+  font-family: 'Courier New', monospace; /* Tipo de letra del texto inferior */
+  width: 200px;
+}
+.text-res3 {
+  font-size: 2.2rem; /* Tamaño del texto */
+  color: black; /* Color del texto */
+  font-family: 'Courier New', monospace; /* Tipo de letra del texto */
+  font-weight: bold; /* Aplica negrilla al texto */
+  
+}
+
+.text-res4 {
+  font-size: 1rem; /* Tamaño del texto inferior */
+  color: rgb(254,55,152); /* Color del texto inferior */
+  font-family: 'Courier New', monospace; 
+}
+
+
+
+/* Segunda linea  */
+
+.title_resumen{
+    font-size: 1.4rem;
+    font-weight: bold; 
+    margin-top: 1rem;;
+}
+
+/* Tercera linea  */
+
+.combined-rows-container {
+  padding: 0;
+}
+
+.row-custom {
+  margin-bottom: 0; /* Asegúrate de que el margen inferior esté en 0 */
+  padding: 0; /* También elimina cualquier relleno en la fila */
+}
+
+/* Ajusta el margen y el relleno de los párrafos dentro de las filas */
+.row-custom p {
+  margin: 0; /* Elimina el margen de los párrafos */
+  padding: 0; /* Elimina el relleno de los párrafos */
+}
+
+
+/* Estilo para las columnas */
+.col-custom {
+  padding: 0; /* Elimina el relleno adicional de las columnas */
+}
+
+.col-1, .col-3 {
+  flex: 1; /* Las columnas 1 y 3 tienen el mismo tamaño por defecto */
+}
+
+.col-2 {
+  flex: 2; /* La columna 2 es el doble de ancha que las demás */
+}
+
+/* Asegúrate de que el contenido de las columnas esté centrado */
+.col-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos opcionales para asegurar el espacio entre columnas */
+.text-container-res {
+  padding: 0; /* Elimina el relleno dentro de los contenedores de texto */
+}
+
+/* Sessión control cantidad dinero */
+
+.circular-button-res {
+  width: 1.5em; /* Ajusta el tamaño según sea necesario */
+  height: 1.5em; /* Ajusta el tamaño según sea necesario */
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.control-aporte-res .icon {
+  margin: 0 25px; 
+  border-radius: 50%;
+  overflow: hidden;
+  width: 2rem; 
+  height: 2rem;
+  border: 1px solid black; 
+  box-shadow: 0 0 5px 2px rgba(128, 128, 128, 0.5);
+  justify-content: center;
+}
+
+
+
+.control-aporte-item-res {
+  margin-right: 1.5rem;
+  font-size: 1.4rem;
+}
+
+
+
+.amount-display-res {
+  font-size: 0.8rem;
+}
+
+
+
+

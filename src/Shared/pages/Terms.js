@@ -1,3 +1,4 @@
+import "../../css/terms.css";
 import React from "react";
 import logo from "../../logo.png";
 import { Container, Row, Col, Card } from "react-bootstrap";

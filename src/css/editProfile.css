@@ -1,0 +1,55 @@
+
+.profile-edit-label {
+    color:rgb(55, 55, 55);
+    width: 10rem;
+};
+
+
+.icon-profile-edit2 {
+    background: none; /* Elimina el fondo del botón */
+    border: none;     /* Elimina el borde del botón */
+    padding: 0;       /* Elimina el relleno del botón */
+    margin: 0;        /* Elimina el margen del botón */
+    cursor: pointer;  /* Cambia el cursor al pasar sobre el botón */
+    outline: none;    /* Elimina el contorno al hacer clic */
+  }
+  
+
+  .icon-profile-edit {
+    background-color: transparent; /* Fondo transparente */
+    margin-top: 0.1rem; /* Ajusta el margen superior del botón si es necesario */
+    margin-left: 0.1rem;
+    color:black;
+    border: transparent;
+  }
+
+
+  .profile-control {
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .profile-control-readonly {
+    background-color: #f5f5f5; /* Color de fondo gris claro */
+    opacity: 0.7; /* Opacidad del campo no editable */
+    cursor: not-allowed; /* Cursor no permitido */
+  }
+  
+
+
+
+  /* Boton de guardar  */
+
+  .custom-button-save {
+    background-color: transparent; /* Fondo transparente */
+    border: 2px solid rgb(254,55,152);  /* Contorno de color (puedes cambiar el color a tu preferencia) */
+    color: rgb(254,55,152); /* Color de letra (puedes cambiar el color a tu preferencia) */
+    font-weight: bold; /* Opcional: Para hacer el texto en negrita */
+  }
+  
+  .custom-button-save:hover {
+    border: 2px solid rgb(254,55,152);
+    background-color: rgb(254,55,152);  /* Fondo al pasar el ratón */
+    color: white; /* Color de letra al pasar el ratón */
+  }
+
+

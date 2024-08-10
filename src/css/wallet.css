@@ -1,0 +1,167 @@
+
+  /******************************************************* WALLET********************/
+
+
+
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.logo1-wallet {
+  /* margin-bottom: 1rem; */
+  width: 5rem;   
+  height: 5rem;
+}
+
+.logo-full-width {
+  width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+  height: auto; /* Mantiene las proporciones de la imagen */
+}
+
+
+
+/************************* elementos modal - imagen wallet */
+
+/* Contenedor para el texto sobre la imagen */
+.overlay-text {
+  position: absolute; /* Posiciona el texto sobre la imagen */
+  top: 15rem; /* Ajusta la posición vertical */
+  right: 10%; /* Ajusta la posición horizontal desde el borde derecho */
+  transform: translateX(0%); /* Sin desplazamiento horizontal adicional */
+  color: rgb(11, 11, 11); /* Color del texto */
+  text-align: right; /* Alinea el texto a la derecha dentro del contenedor */
+  font-size: 2.2rem; /* Tamaño de fuente */
+  background: transparent; /* Fondo transparente */
+  padding: 10px; /* Espacio alrededor del texto */
+  border-radius: 5px; /* Bordes redondeados opcionales */
+  max-width: 100%; /* Limita el ancho del contenedor del texto (ajusta según sea necesario) */
+  white-space: normal; /* Permite que el texto se ajuste en varias líneas */
+  overflow-wrap: break-word; /* Asegura que el texto se divida adecuadamente */
+}
+
+.overlay-text2 {
+  position: absolute; /* Posiciona el texto sobre la imagen */
+  top: 18.4rem; /* Ajusta la posición vertical */
+  right: 10%; /* Ajusta la posición horizontal desde el borde derecho */
+  transform: translateX(0%); /* Sin desplazamiento horizontal adicional */
+  color: rgb(255, 255, 255); /* Color del texto */
+  text-align: right; /* Alinea el texto a la derecha dentro del contenedor */
+  font-size: 1rem; /* Tamaño de fuente */
+  background: rgb(0, 142, 73); /* Fondo sólido */
+  padding: 5px; /* Espacio alrededor del texto */
+  border-radius: 5px; /* Bordes redondeados opcionales */
+  max-width: 100%; /* Limita el ancho del contenedor del texto (ajusta según sea necesario) */
+  white-space: normal; /* Permite que el texto se ajuste en varias líneas */
+  overflow-wrap: break-word; /* Asegura que el texto se divida adecuadamente */
+  height: 2rem;
+}
+
+
+
+
+/*************************  elementos cuerpo modal wallet */
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* Ajusta el tamaño del contenedor */
+  height: 50px; /* Ajusta el tamaño del contenedor */
+  border-radius: 50%; /* Hace el contenedor circular */
+  border: 3px solid red; /* Contorno circular rojo */
+  background-color: transparent; /* Fondo transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-text {
+  font-size: 2rem; /* Tamaño del símbolo */
+  color: white; /* Color del texto */
+}
+
+
+
+
+/*************************  elementos cuerpo modal wallet - signos $ tipo icono */
+
+.parent-container {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: left; 
+  margin:2rem;
+} 
+
+
+.icon-container-m {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* Ajusta el tamaño del contenedor */
+  height: 50px; /* Ajusta el tamaño del contenedor */
+  border-radius: 50%; /* Hace el contenedor circular */
+  border: 3px solid rgb(38, 210, 22); /* Contorno circular rojo */
+  background-color: rgb(38, 210, 22); /* Fondo rojo */
+  position: relative; /* Asegura el posicionamiento correcto del contenido */
+}
+
+.icon-text-m {
+  font-size: 2rem; /* Tamaño del símbolo */
+  color: white; /* Color del texto */
+}
+
+
+.text-container-rw {
+  display: flex;
+  flex-direction: column; /* Coloca los textos uno encima del otro */
+  align-items: center; /* Centra los textos horizontalmente */
+  justify-content: center; /* Centra los textos verticalmente */
+  margin: 1.6rem;
+
+}
+
+.text-rw1 {
+  font-size: 1.4rem; /* Tamaño del texto */
+  color: rgb(78, 78, 78); /* Color del texto */
+  font-family: 'Courier New', monospace; /* Tipo de letra del texto */
+  font-weight: bold; /* Aplica negrilla al texto */
+  
+}
+
+.text-rw2 {
+  font-size: 1rem; /* Tamaño del texto inferior */
+  color: rgb(44, 45, 44); /* Color del texto inferior */
+  font-family: 'Courier New', monospace; /* Tipo de letra del texto inferior */
+}
+.text-rw3 {
+  font-size: 1.4rem; /* Tamaño del texto */
+  color: black; /* Color del texto */
+  font-family: 'Courier New', monospace; /* Tipo de letra del texto */
+  font-weight: bold; /* Aplica negrilla al texto */
+  
+}
+
+.text-rw4 {
+  font-size: 1rem; /* Tamaño del texto inferior */
+  color: green; /* Color del texto inferior */
+  font-family: 'Courier New', monospace; 
+}
+
+    /********************************************************************************/

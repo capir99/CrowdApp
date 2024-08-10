@@ -1,0 +1,58 @@
+/* Seccion 1 - barra superior */
+
+.header-container-left {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: left; /* Centra el logo horizontalmente */
+    align-items: flex-start;
+    padding: 5px; /* Espacio alrededor del contenido */
+}
+
+
+.logo-nana-detalle {
+    /* margin-bottom: 1rem; */
+    width: 7.5rem;   
+    height: 7rem;
+}
+
+.logo-profile_detalle {
+    /* margin-bottom: 1rem; */
+    width: 3.8rem;   
+    height: 3.8rem;
+}
+  
+
+.linea-division {
+    border: none;
+    height: 1px;
+    background-color: gray; /* Cambia el color según tus necesidades */
+    margin: 20px 0; /* Opcional: para añadir espacio arriba y abajo de la línea */
+}
+
+
+
+
+/* Seccion 2 - detalle producto */
+
+
+  .imagen-con-borde {
+    width: 28rem;   
+    height: 16rem;
+    border-radius: 5%; /* Hace las esquinas completamente circulares */
+    border: 1px solid #ccc; /* Cambia el color del borde y el grosor según tus necesidades */
+    display: block;
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+}
+
+
+.circular-button-avatar {
+    width: 3rem; /* Ajusta el tamaño según sea necesario */
+    height: 3rem; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-justify{
+    text-align: start;
+  }

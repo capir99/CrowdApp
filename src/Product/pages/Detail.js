@@ -131,7 +131,12 @@ const Detail = () => {
 
         <div className="mt-4 mb-4">
           <Elements stripe={stripePromise}>
-            <BotonApoyo producto={producto} />
+            <BotonApoyo
+              producto={producto}
+              isMobile={isMobile}
+              amount={amount}
+              setAmount={setAmount}
+            />
           </Elements>
         </div>
       </div>

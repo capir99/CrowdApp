@@ -41,25 +41,6 @@
 
 
 
-/* ESTILOS HOME */
-
-.home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.top-image-container {
-  margin-top: 4rem; 
-}
-
-.logo-nana {
-  margin-bottom: 1rem;
-  width: 9rem;   
-  height: 9rem;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -74,62 +55,8 @@
 }
 
 
-.menu-container-wrapper {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.menu-container {
+.d-flex {
   display: flex;
-  justify-content: center;
-}
-
-.menu-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.menu-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-right: 10rem;
-  margin-left: 10rem;
-  
-}
-
-.menu-text {
-  text-align: center;
-  margin-top: 5px;
-  white-space: nowrap; /* Evita el salto de línea */
-}
-
-.menu-button:not(:last-child) {
-  margin-right: 60%;
-}
-
-/* MENU BUSQUEDA */
-
-.busqueda-container {
-  display: flex;
-  align-items: center; /* Centra verticalmente los elementos */
-  border: 1px solid #ccc; /* Borde del control de búsqueda */
-  border-radius: 20px; /* Borde redondeado */
-  padding: 20px; /* Añade un poco de espacio dentro del contenedor */
-  width: 400px;  /* Ancho del contenedor de búsqueda */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
-}
-
-.search-icon {
-  width: 30px; /* Ajusta el tamaño del icono de búsqueda según sea necesario */
-  margin-right: 10px; /* Añade un pequeño margen entre el ícono y el input */
-}
-
-.search-input {
-  flex-grow: 1; /* El input de búsqueda ocupa todo el espacio disponible */
-  border: none; /* Quita el borde del input */
-  outline: none; /* Quita el borde de enfoque del input */
-  width: 0; /* Establece el ancho inicial del input a 0 */
 }
 
 
@@ -383,3 +310,4 @@
 .form-check-custom .form-check-input:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25); /* Sombra de enfoque roja */
 }
+

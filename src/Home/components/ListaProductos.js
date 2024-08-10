@@ -8,7 +8,7 @@ const ListaProductos = ({ productos, setProductos }) => {
   //Función enviar el id del producto seleccionado
   const productSel = (e) => {
     const productId = e.currentTarget.getAttribute("data-id");
-    navigate(`/Detail/${productId}`);
+    navigate(`/Detail2/${productId}`);
   };
 
   return (

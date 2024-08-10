@@ -1,0 +1,271 @@
+
+  /******************************************************* HOME********************/
+
+
+
+.home-container {
+    position: relative; /* Necesario para la posición requerida de los botones */
+    text-align: center; /* Centra el contenido horizontalmente */
+  }
+  
+.header-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center;
+    padding: 10px; /* Espacio alrededor del contenido */
+}
+  
+
+.logo-nana {
+    /* margin-bottom: 1rem; */
+    width: 7rem;   
+    height: 7rem;
+}
+
+.logo-wallet {
+    /* margin-bottom: 1rem; */
+    width: 2rem;   
+    height: 2rem;
+}
+  
+
+.icon-buttons {
+    position: absolute; /* Posiciona los iconos en la esquina superior derecha */
+    top: 20px; /* Espacio desde la parte superior */
+    right: 20px; /*Espacio desde el borde derecho*/
+    display: flex;
+    gap: 16px; /* Espacio entre los iconos */
+}
+  
+.icon-wallet {
+    display: flex;
+    flex-direction: column; /* Apila la imagen y el texto verticalmente */
+    align-items: center; /* Centra horizontalmente la imagen y el texto */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000; /* Color del icono */
+}
+
+.icon-wallet p {
+    margin: 0; /* Elimina el margen predeterminado del párrafo */
+    font-size: 0.8rem; /* Ajusta el tamaño del texto según sea necesario */
+    color: #333; /* Color del texto */
+  }
+
+.icon-profile {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos al centro */
+    gap: 8px; /* Espacio entre la imagen y el texto*/
+    padding: 8px 12px; /* Espacio interno del botón */
+    background-color: transparent; /* Hace que el fondo sea transparente */
+    border: none; /* Elimina el borde por defecto del botón */
+    border-radius: 4px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  }
+  
+
+  .text-container p {
+    margin: 0; /* Elimina el margen predeterminado del párrafo */
+    font-size: 0.8rem; /* Ajusta el tamaño del texto según sea necesario */
+    color: #333; /* Color del texto */
+  }
+
+  button {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos al centro */
+    border: 2px solid #333; /* Borde del botón */
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 4px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    outline: none; /* Elimina el contorno de enfoque predeterminado */
+    padding: 8px 12px; /* Espacio interno del botón */
+  }
+
+
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .header-container {
+      flex-direction: column; /* Apila el logo y los botones verticalmente */
+      align-items: center; /* Centra el contenido horizontalmente */
+      padding: 10px; /* Espacio alrededor del contenido */
+    }
+  
+    .icon-buttons {
+      margin-top: 10px; /* Espacio arriba de los botones */
+      width: 100%; /* Asegura que los botones ocupen el ancho completo */
+      justify-content: center; /* Centra los botones horizontalmente */
+    }
+  
+    .icon-wallet, .icon-profile {
+      margin: 5px; /* Añade margen alrededor de los botones */
+    }
+  
+    .logo-nana {
+      width: 5rem; /* Ajusta el tamaño del logo para pantallas pequeñas */
+      height: 5rem; /* Ajusta el tamaño del logo para pantallas pequeñas */
+      margin-bottom: 80px; /* Aumenta el espacio debajo del logo en pantallas pequeñas */
+    }
+  
+    .text-container {
+      align-items: center; /* Asegura que el texto esté centrado en pantallas pequeñas */
+    }
+  }
+
+
+
+/* CONTROLES DE BUSQUEDA */
+
+.content-container {
+    margin-top: 0.2rem; /* Espacio debajo del logo y los iconos */
+    text-align: center; /* Asegura que el contenido esté centrado */
+}
+
+.busqueda-container-wrapper {
+    display: flex;
+    justify-content: center; /* Centra el contenido en el eje horizontal */
+    margin-top: 20px; /* Espacio encima del contenedor de búsqueda */
+}
+  
+.busqueda-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    border: 1px solid #ccc; /* Borde del control de búsqueda */
+    border-radius: 20px; /* Borde redondeado */
+    padding: 20px; /* Añade un poco de espacio dentro del contenedor */
+    width: 400px;  /* Ancho del contenedor de búsqueda */
+    height: 1rem;  /* Alto */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  }
+  
+.search-icon {
+    width: 1.3rem; /* Ajusta el tamaño del icono de búsqueda según sea necesario */
+    margin-right: 10px; /* Añade un pequeño margen entre el ícono y el input */
+}
+
+.search-input {
+    flex-grow: 1; /* El input de búsqueda ocupa todo el espacio disponible */
+    border: none; /* Quita el borde del input */
+    outline: none; /* Quita el borde de enfoque del input */
+    width: 0; /* Establece el ancho inicial del input a 0 */
+}
+  
+
+
+
+
+
+  
+/* CONTROLES DE MENU */
+  
+.menu-container-wrapper {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.menu-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 10rem;
+    margin-left: 10rem;
+    
+}
+  
+
+
+/* CONTROLES DE WALLET */
+
+
+.my-custom-modal-msg .modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1051;
+  width: 80%; /* Ajusta según tus necesidades */
+  /* max-width: 800px; */
+  border-radius: 20px; /* Redondea los bordes */
+}
+
+.my-custom-modal-msg .modal-content {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin-top: 200px;  
+}
+
+
+
+/* Si estás utilizando Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+
+.text-rw1 {
+  font-size: 2rem;
+  color: #000;
+  /* font-family: 'Trebuchet MS', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.text-rw2 {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.btn-ayudar {
+  background-color: #00c4cc;
+  color: white;
+  width: 15rem;
+  padding: 5px 5px;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  /* text-transform: uppercase; */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+.icon-ayudar {
+  margin-right: 30px; /* Espacio entre el ícono y el texto */
+  height: 50px; /* Ajusta el tamaño del ícono según sea necesario */
+
+}
+
+.btn-ayudar:hover {
+  background-color: #00a1a7;
+  color: white;
+  text-decoration: none;
+
+}
+
+  /* CONTROLES DE EDIT PROFILE */
+
+
+.my-custom-modal-profile .modal-dialog {
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1051;
+  width: 80%; 
+  border-radius: 20px;
+  margin-top: 100px;  
+
+}
+
+
+
+    /********************************************************************************/
