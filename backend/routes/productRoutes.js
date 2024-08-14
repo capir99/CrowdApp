@@ -8,7 +8,7 @@ router.get("/list", productController.getProducts);
 //Crear producto
 router.post("/add", productController.addProduct);
 //Actualizar likes
-router.post("/modifyLikes/:id", productController.modifyLikes);
+router.patch("/modifyLikes/:id", productController.modifyLikes);
 //Consultar producto por parte de su nombre
 router.get("/search/:searchText", productController.getProductoByWord);
 //Consultar producto por categoria
@@ -22,7 +22,5 @@ router.post("/modify/:id", productController.modifyProducto);
 router.delete("/remove/:id", productController.removeProducto);
 //Consultar producto por Id
 router.get("/:id", productController.getProductoById);
-
-
 
 module.exports = router;

@@ -1,0 +1,187 @@
+body {
+  font-family: Arial, sans-serif; /* Fuente sans-serif común */
+  font-weight: 400; /* Peso normal */
+  line-height: 1.2;
+  color: #000000; /* Color de texto gris oscuro */
+  margin: 0;
+  padding: 0;
+}
+
+/* SECCION 1 -BARRA SUPERIOR */
+
+.header-container-left {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: left; /* Centra el logo horizontalmente */
+    align-items: flex-start;
+    padding: 10px; /* Espacio alrededor del contenido */
+}
+
+.logo-nana-detalle {
+    width: 5.5rem;   
+    height: 5rem;
+}
+
+.logo-profile_detalle {
+    width: 3rem;   
+    height: 3rem;
+}
+  
+.profile-position {
+  position: absolute; /* Posiciona los iconos en la esquina superior derecha */
+  top: 20px; /* Espacio desde la parte superior */
+  right: 20px; /*Espacio desde el borde derecho*/
+  display: flex;
+  gap: 16px; /* Espacio entre los iconos */
+}
+
+.icon-profile-detalle {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los elementos al centro */
+  gap: 8px; /* Espacio entre la imagen y el texto*/
+  padding: 8px 12px; /* Espacio interno del botón */
+  background-color: transparent; /* Hace que el fondo sea transparente */
+  border: none; /* Elimina el borde por defecto del botón */
+  border-radius: 4px; /* Bordes redondeados del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.linea-division {
+    border: none;
+    height: 1px;
+    background-color: gray; /* Cambia el color según tus necesidades */
+    margin-top: 1px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+
+/* SECCION 2 -DETALLE PRODUCTO */
+
+.row-custom-detalle {
+  margin-bottom: 0; /* Asegúrate de que el margen inferior esté en 0 */
+  padding: 0; /* También elimina cualquier relleno en la fila */
+}
+
+/* Ajusta el margen y el relleno de los párrafos dentro de las filas */
+.row-custom-detalle p {
+  margin: 0; /* Elimina el margen de los párrafos */
+  padding: 0; /* Elimina el relleno de los párrafos */
+}
+
+
+.imagen-con-borde {
+  width: 100%;   
+  height: 20rem; 
+  border-radius: 3%; /* Hace las esquinas completamente circulares */
+  border: 1px solid #ccc; /* Cambia el color del borde y el grosor según tus necesidades */
+  display: block;
+  max-width: 100%; /* Asegura que la imagen no se desborde */
+  /* max-height: 16rem;  */
+}
+
+.circular-button {
+  width: 1.5rem; /* Ajusta el tamaño según sea necesario */
+  height: 1.5rem; /* Ajusta el tamaño según sea necesario */
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem;
+  
+}
+
+.circular-button-icon {
+  width: 1.8rem; 
+  height: 1.8rem; 
+}
+
+.text-mid{
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+
+/* Estilo para la columna con id="card" */
+#card {
+  border: 1px solid #ccc; /* Color y grosor del borde */
+  border-radius: 3%; /* Hace que el borde sea circular */
+  padding: 20px; /* Espaciado interno para que el contenido no quede pegado al borde */
+  overflow: hidden; /* Asegura que el contenido no sobresalga del borde circular */
+  display: flex; /* Opcional: para alinear el contenido dentro del borde circular */
+  align-items: center; /* Opcional: para centrar verticalmente el contenido */
+  justify-content: center; /* Opcional: para centrar horizontalmente el contenido */
+}
+
+
+.detalle-avatar {
+  width: 3rem; /* Ajusta el tamaño según sea necesario */
+  height: 3rem; /* Ajusta el tamaño según sea necesario */
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.text-left{
+  text-align: start;
+  font-size: 1rem;
+  margin: 1px;
+}
+
+.text-justify {
+  text-align: justify; 
+  font-size: 1rem;
+  margin: 1px;
+}
+
+.text-grey{
+  color: grey;
+}
+
+
+.amount-display-detalle {
+  font-size: 1.5rem;
+}
+
+.ope-display-detalle {
+  font-size: 0.9rem;
+}
+
+.circular-button-amount {
+  width: 1.5em; /* Ajusta el tamaño según sea necesario */
+  height: 1.5em; /* Ajusta el tamaño según sea necesario */
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.control-amount-detalle {
+  margin-right: 1.5rem;
+  font-size: 1.4rem;
+}
+
+
+#valor-aporte{
+  color: black;
+  font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+.custom-button-apoyar {
+  background-color: transparent; /* Fondo transparente */
+  border: 2px solid rgb(254,55,152);  /* Contorno de color (puedes cambiar el color a tu preferencia) */
+  color: rgb(254,55,152); /* Color de letra (puedes cambiar el color a tu preferencia) */
+  font-weight: bold; /* Opcional: Para hacer el texto en negrita */
+}
+
+

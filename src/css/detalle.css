@@ -1,58 +1,192 @@
-/* Seccion 1 - barra superior */
-
-.header-container-left {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: left; /* Centra el logo horizontalmente */
-    align-items: flex-start;
-    padding: 5px; /* Espacio alrededor del contenido */
+/* Estilos básicos */
+body {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+  margin: 0;
+  padding: 0;
 }
 
+/* SECCION 1 -BARRA SUPERIOR */
+.header-container-left {
+  display: flex;
+  justify-content: space-between; /* Alinea logo y perfil a los extremos */
+  align-items: center;
+  padding: 10px;
+}
 
 .logo-nana-detalle {
-    /* margin-bottom: 1rem; */
-    width: 7.5rem;   
-    height: 7rem;
+  width: 5.5rem;
+  height: 5rem;
 }
 
 .logo-profile_detalle {
-    /* margin-bottom: 1rem; */
-    width: 3.8rem;   
-    height: 3.8rem;
+  width: 3rem;
+  height: 3rem;
 }
-  
+
+.profile-position {
+  display: flex;
+  gap: 16px;
+}
+
+.icon-profile-detalle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 .linea-division {
-    border: none;
-    height: 1px;
-    background-color: gray; /* Cambia el color según tus necesidades */
-    margin: 20px 0; /* Opcional: para añadir espacio arriba y abajo de la línea */
+  border: none;
+  height: 1px;
+  background-color: gray;
+  margin: 1px 0 25px 0;
+}
+
+/* SECCION 2 - DETALLE PRODUCTO */
+.row-custom-detalle {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.row-custom-detalle p {
+  margin: 0;
+  padding: 0;
+}
+
+.imagen-con-borde {
+  width: 100%;
+  height: auto; /* Ajusta la altura de la imagen de manera responsiva */
+  border-radius: 3%;
+  border: 1px solid #ccc;
+  max-width: 100%;
+}
+
+.circular-button {
+  
+  width: 2rem; /* Tamaño ajustado para mejor visualización en móviles */
+  height: 2rem;
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
 }
 
 
-
-
-/* Seccion 2 - detalle producto */
-
-
-  .imagen-con-borde {
-    width: 28rem;   
-    height: 16rem;
-    border-radius: 5%; /* Hace las esquinas completamente circulares */
-    border: 1px solid #ccc; /* Cambia el color del borde y el grosor según tus necesidades */
-    display: block;
-    max-width: 100%; /* Asegura que la imagen no se desborde */
+.circular-button-icon {
+  width: 1.9rem;
+  height: 1.9rem;
 }
 
+.text-mid {
+  font-size: 1rem;
+  margin: 0 1rem;
+}
 
-.circular-button-avatar {
-    width: 3rem; /* Ajusta el tamaño según sea necesario */
-    height: 3rem; /* Ajusta el tamaño según sea necesario */
-    border-radius: 50%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+#card {
+  border: 1px solid #ccc;
+  border-radius: 3%;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.detalle-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.text-left {
+  text-align: start;
+  font-size: 1rem;
+}
+
+.text-justify {
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.text-grey {
+  color: grey;
+}
+
+.amount-display-detalle {
+  font-size: 1.5rem;
+}
+
+.ope-display-detalle {
+  font-size: 0.9rem;
+}
+
+.circular-button-amount {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.control-amount-detalle {
+  margin-right: 1.5rem;
+  font-size: 1.4rem;
+}
+
+#valor-aporte {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.custom-button-apoyar {
+  background-color: transparent;
+  border: 2px solid rgb(254,55,152);
+  color: rgb(254,55,152);
+  font-weight: bold;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 767px) {
+  .logo-nana-detalle {
+    width: 4rem;
+    height: 4rem;
   }
 
-  .text-justify{
-    text-align: start;
+  .logo-profile_detalle {
+    width: 2.5rem;
+    height: 2.5rem;
   }
+
+  .circular-button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+
+
+
+  .text-mid {
+    font-size: 1rem;
+  }
+
+  .text-justify {
+    font-size: 0.9rem;
+  }
+
+  .amount-display-detalle {
+    font-size: 1.2rem;
+  }
+
+  .control-amount-detalle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-container-left {
+    padding: 20px;
+  }
+}

@@ -3,10 +3,9 @@ import logo from "../../logo.png";
 import wallet from "../../img/icons/mywallet.png";
 import profile1 from "../../img/icons/profile.png";
 import profile2 from "../../img/icons/colorprofile.png";
-import iconAyudar from "../../img/icons/HandHeart.png";
+import iconAyudar from "../../img/icons/HandHeart2.png";
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import ListaProductos from "../components/ListaProductos";
 import Menu from "../components/Menu";
 import Busqueda from "../components/Busqueda";
@@ -179,10 +178,6 @@ const Home = () => {
             )}
           </button>
         </div>
-      
-      
-      
-      
       </div>
       <div className="content-container">
         <p className="h5 mb-3 fw-normal">Transformamos la forma de ayudar</p>

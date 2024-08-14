@@ -3,8 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Signup from "./Login/pages/Singup";
 import EmailVerification from "./Login/pages/EmailVerification";
 import Terms from "./Shared/pages/Terms";
-// import Detail from "./Product/pages/Detail";
-import Detail from "./Product/pages/Detail2";
+import Detail from "./Product/pages/Detail";
 import Home from "./Home/pages/Home";
 import Error from "./Shared/pages/Error";
 import SinAutorizacion from "./Shared/pages/SinAutorizacion";
@@ -65,7 +64,7 @@ function App() {
               <Route path="/verify-email" element={<EmailVerification />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/Detail" element={<Detail />} />
-              <Route path="/Detail2/:id" element={<Detail />} />
+              <Route path="/Detail/:id" element={<Detail />} />
               <Route path="/Home" element={<Home />} />
               <Route path="/Update/:id" element={<UpdateProduct />} />
               <Route path="/" element={<Home />} />

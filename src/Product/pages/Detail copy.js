@@ -8,7 +8,6 @@ import logo from "../../logo.png";
 import profile1 from "../../img/icons/profile.png";
 import profile2 from "../../img/icons/colorprofile.png";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -25,7 +24,6 @@ const stripePromise = loadStripe(
 );
 
 const Detail = () => {
-  const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const [producto, setProducto] = useState([]);
@@ -33,23 +31,22 @@ const Detail = () => {
   const [showShareModal, setShowShareModal] = useState(false);
   const [productUpdated, setProductUpdated] = useState(false);
 
-  // Función para cargar los datos del producto
-  const fetchProductData = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/products/${id}`);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setProducto(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchProductData();
-  });
+    async function fetchData() {
+      try {
+        const response = await fetch(`${apiUrl}/products/${id}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setProducto(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle error state or show a message to the user
+      }
+    }
+    fetchData();
+  }, [id, apiUrl]);
 
   // funciones visibilidad del login
   const [showLogin, setShowLogin] = useState(false);
@@ -114,7 +111,7 @@ const Detail = () => {
           throw new Error("Error al actualizar el like, intenta de nuevo");
         }
         toast.success("¡Gracias por tu apoyo!");
-        setProductUpdated((prev) => !prev); // Cambia el estado para recargar los datos
+        // useEffect();
       } catch (error) {
         console.error("Error:", error);
         toast.error(error.message);
@@ -123,36 +120,18 @@ const Detail = () => {
     fetchData();
   };
 
-  //Función para manejar el clic en el botón de like
   const handleLike = () => {
     if (!userName) {
       handleShowLogin();
     } else {
-      const hasLiked = localStorage.getItem(`liked-${producto._id}`);
-      if (hasLiked) {
-        toast.info("Ya has dado un like a este producto.");
-      } else {
-        generarLike();
-        localStorage.setItem(`liked-${producto._id}`, true);
-      }
+      generarLike();
     }
-  };
-
-  // Función para manejar el clic en el botón
-  const handleHomeClick = () => {
-    navigate("/"); // Redirige a la página de inicio
   };
 
   return (
     <Container>
       <div className="header-container-left">
-        <button
-          type="button"
-          className="icon-button"
-          onClick={handleHomeClick}
-        >
-          <img className="logo-nana-detalle" src={logo} alt="Logo" />
-        </button>
+        <img className="logo-nana-detalle" src={logo} alt="Logo" />
         <div className="profile-position">
           <button className="icon-profile-detalle" onClick={handleProfile}>
             {userName && (
