@@ -3,7 +3,9 @@ const router = express.Router();
 const paymentController = require("../controllers/paymentController");
 
 //**************END POINTS*********************************************
-//Checkout a la pasarela de pagos
-router.get("/session", paymentController.doPayment);
+//Crear session pasarela
+router.post("/session", paymentController.doPayment);
+//Verificar estado del pago
+router.get("/success/:session_id", paymentController.verifyPayment);
 
 module.exports = router;

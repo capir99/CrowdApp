@@ -6,6 +6,7 @@ import Terms from "./Shared/pages/Terms";
 import Detail from "./Product/pages/Detail";
 import Home from "./Home/pages/Home";
 import Error from "./Shared/pages/Error";
+import SuccessPage from "./Product/components/SuccessPage";
 import SinAutorizacion from "./Shared/pages/SinAutorizacion";
 import CreateProduct from "./Product/pages/Create";
 import UpdateProduct from "./Product/pages/Update";
@@ -67,6 +68,7 @@ function App() {
               <Route path="/Detail/:id" element={<Detail />} />
               <Route path="/Home" element={<Home />} />
               <Route path="/Update/:id" element={<UpdateProduct />} />
+              <Route path="/success" element={<SuccessPage />} />
               <Route path="/" element={<Home />} />
               <Route path="/error" element={<Error />} />
               <Route path="*" element={<Navigate to="/error" />} />

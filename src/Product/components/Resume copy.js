@@ -1,6 +1,8 @@
 import "../../css/resumen.css";
 import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import React, { useState, useEffect } from "react";
 import LoginForm from "../../Login/components/LoginForm";
@@ -41,19 +43,12 @@ const Resume = ({
 
     const auth_user = localStorage.getItem("user-email");
     if (auth_user !== null && auth_user.trim() !== "") {
-      const requestBody = {
-        currency: "eur",
-        productName: "Apoyo a " + producto.name,
-        amount: (amount + supportAmount) * 100, // Monto en centavos (ejemplo: $10.00) amount + supportAmount
-      };
-
       try {
         const response = await fetch(`${apiUrl}/payment/session`, {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(requestBody), // Enviar los datos en el cuerpo
         });
 
         const session = await response.json();
@@ -223,11 +218,11 @@ const Resume = ({
           >
             Continuar
           </Button>
-          {/* {sessionId && (
+          {sessionId && (
             <Elements stripe={stripePromise}>
               <CheckoutForm sessionId={sessionId} />
             </Elements>
-          )} */}
+          )}
         </Col>
       </Row>
       {/* </Form> */}

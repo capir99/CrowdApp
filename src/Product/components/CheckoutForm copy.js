@@ -1,6 +1,5 @@
 import React from "react";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
-import { CardElement } from "@stripe/react-stripe-js";
 import { Button } from "react-bootstrap";
 
 const CheckoutForm = ({ sessionId }) => {
@@ -31,10 +30,9 @@ const CheckoutForm = ({ sessionId }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <CardElement /> */}
-      {/* <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit">
         Pagar
-      </Button> */}
+      </Button>
     </form>
   );
 };
