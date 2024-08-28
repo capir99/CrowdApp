@@ -156,7 +156,7 @@ const LoginForm = ({ handleClose }) => {
         </Button>
       </Form.Group>
 
-      <Form.Group className="d-flex justify-content-center mb-4">
+      {/* <Form.Group className="d-flex justify-content-center mb-4">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             console.log(credentialResponse);
@@ -165,7 +165,7 @@ const LoginForm = ({ handleClose }) => {
             console.error("Error during Google login:", error);
           }}
         />
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group className="text-center">
         <div>¿No tienes cuenta aún?</div>
