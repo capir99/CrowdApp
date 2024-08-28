@@ -6,6 +6,6 @@ const paymentController = require("../controllers/paymentController");
 //Crear session pasarela
 router.post("/session", paymentController.doPayment);
 //Verificar estado del pago
-router.get("/success/:session_id", paymentController.verifyPayment);
+router.post("/success/:session_id", paymentController.verifyPayment);
 
 module.exports = router;

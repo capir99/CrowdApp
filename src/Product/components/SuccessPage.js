@@ -9,6 +9,7 @@ const SuccessPage = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
     const fetchSessionData = async () => {
@@ -16,17 +17,25 @@ const SuccessPage = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const sessionId = urlParams.get("session_id");
       const apiUrl = process.env.REACT_APP_API_URL;
+      console.log("Holaaaaa: :", localStorage.getItem("beneficiaryId"));
 
+      if (hasFetched) return;
+
+      setHasFetched(true);
       console.log("session_id extraído -:", sessionId); // Agrega este log
 
       if (sessionId) {
         try {
           // Hacer una solicitud a tu backend para verificar el estado del pago
           const config = {
-            method: "GET",
+            method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+              beneficiaryId: localStorage.getItem("beneficiaryId"),
+              supportAmount: localStorage.getItem("supportAmount"),
+            }),
           };
           const response = await fetch(
             `${apiUrl}/payment/success/${sessionId}`,
@@ -54,7 +63,7 @@ const SuccessPage = () => {
     };
 
     fetchSessionData();
-  }, []);
+  }, [hasFetched]);
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -77,13 +86,15 @@ const SuccessPage = () => {
         <div>
           <p>¡Tu pago ha sido exitoso!</p>
           <img src={exitoso} alt="success" />
-           <div><Button
-            variant="primary"
-            onClick={handleClick}
-            className="custom-button-save"
-          >
-            Volver a NanaPass
-          </Button> </div>
+          <div>
+            <Button
+              variant="primary"
+              onClick={handleClick}
+              className="custom-button-save"
+            >
+              Volver a NanaPass
+            </Button>{" "}
+          </div>
         </div>
       )}
     </div>

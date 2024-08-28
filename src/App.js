@@ -7,6 +7,7 @@ import Detail from "./Product/pages/Detail";
 import Home from "./Home/pages/Home";
 import Error from "./Shared/pages/Error";
 import SuccessPage from "./Product/components/SuccessPage";
+import CancelPage from "./Product/components/CancelPage";
 import SinAutorizacion from "./Shared/pages/SinAutorizacion";
 import CreateProduct from "./Product/pages/Create";
 import UpdateProduct from "./Product/pages/Update";
@@ -64,6 +65,7 @@ function App() {
               <Route path="/Signup" element={<Signup />} />
               <Route path="/verify-email" element={<EmailVerification />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/cancel" element={<CancelPage />} />
               <Route path="/Detail" element={<Detail />} />
               <Route path="/Detail/:id" element={<Detail />} />
               <Route path="/Home" element={<Home />} />

@@ -130,7 +130,7 @@ const Detail = () => {
     } else {
       const hasLiked = localStorage.getItem(`liked-${producto._id}`);
       if (hasLiked) {
-        toast.info("Ya has dado un like a este producto.");
+        toast.info("Ya has dado un like a este artista.");
       } else {
         generarLike();
         localStorage.setItem(`liked-${producto._id}`, true);
@@ -146,11 +146,7 @@ const Detail = () => {
   return (
     <Container>
       <div className="header-container-left">
-        <button
-          type="button"
-          className="icon-button"
-          onClick={handleHomeClick}
-        >
+        <button type="button" className="icon-button" onClick={handleHomeClick}>
           <img className="logo-nana-detalle" src={logo} alt="Logo" />
         </button>
         <div className="profile-position">

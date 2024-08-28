@@ -38,6 +38,8 @@ const Resume = ({
   const handleApoyoClick = async () => {
     const currentUrl = window.location.href;
     localStorage.setItem("lastUrl", currentUrl);
+    localStorage.setItem("beneficiaryId", producto._id);
+    localStorage.setItem("supportAmount", supportAmount);
 
     const auth_user = localStorage.getItem("user-email");
     if (auth_user !== null && auth_user.trim() !== "") {
