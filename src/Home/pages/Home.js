@@ -1,5 +1,5 @@
 import "../../css/home.css";
-import logo from "../../logo.png";
+import logo from "../../img/icons/logo.PNG";
 import wallet from "../../img/icons/mywallet.png";
 import profile1 from "../../img/icons/profile.png";
 import profile2 from "../../img/icons/colorprofile.png";

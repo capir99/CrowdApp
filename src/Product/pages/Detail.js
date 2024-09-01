@@ -4,7 +4,7 @@ import share from "../../img/icons/compartir.png";
 import heart from "../../img/icons/heart_red.png";
 import heart2 from "../../img/icons/heart_red2.png";
 import location from "../../img/icons/location_ORI.png";
-import logo from "../../logo.png";
+import logo from "../../img/icons/logo.PNG";
 import profile1 from "../../img/icons/profile.png";
 import profile2 from "../../img/icons/colorprofile.png";
 import React, { useState, useEffect } from "react";

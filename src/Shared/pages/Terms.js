@@ -1,6 +1,6 @@
 import "../../css/terms.css";
 import React from "react";
-import logo from "../../logo.png";
+import logo from "../../img/icons/logo.PNG";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 const Terms = () => {
