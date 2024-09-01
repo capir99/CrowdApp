@@ -36,7 +36,10 @@ const Home = () => {
           setFilteredProductos(data); // Inicialmente mostrar todos los productos
         }
       } catch (error) {
-        console.error(`Error fetching data: ${apiUrl} :`, error);
+        console.error(
+          `Error fetching data: (${apiUrl}/products/list) :`,
+          error
+        );
       }
     }
     fetchData();
