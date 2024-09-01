@@ -23,6 +23,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       try {
+        console.log("API URL:", apiUrl);
         const config = {
           method: "GET",
           headers: {
