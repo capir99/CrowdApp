@@ -30,7 +30,9 @@ const Home = () => {
           },
         };
         const response = await fetch(`${apiUrl}/products/list`, config);
+        console.log("Respuesta servidor: " + response);
         const data = await response.json();
+
         if (data) {
           setProductos(data);
           setFilteredProductos(data); // Inicialmente mostrar todos los productos
