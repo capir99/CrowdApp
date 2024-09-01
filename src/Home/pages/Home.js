@@ -30,11 +30,8 @@ const Home = () => {
             "Content-Type": "application/json",
           },
         };
-        const response = await fetch(
-          "https://nannapassbackend-fia93j8nx-nanapass-projects.vercel.app/api/products/list",
-          config
-        );
-        // const response = await fetch(`${apiUrl}/products/list`, config);
+
+        const response = await fetch(`${apiUrl}/products/list`, config);
         console.log("Respuesta servidor: " + response);
         const data = await response.json();
 
