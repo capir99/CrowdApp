@@ -12,7 +12,7 @@ const Menu = ({ onSearch }) => {
 
   return (
     <Navbar
-      expand="lg"
+      expand="md"
       className="bg-body-tertiary"
       style={{
         backgroundColor: "#f0f0f0",

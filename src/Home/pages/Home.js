@@ -45,7 +45,7 @@ const Home = () => {
         );
       }
     }
-    console.log("API URL:", apiUrl);
+    // console.log("API URL:", apiUrl);
     fetchData();
   }, [apiUrl]);
 

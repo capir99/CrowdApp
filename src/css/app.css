@@ -89,7 +89,7 @@
 .center-content {
   display: flex;
   flex-direction: column; /* Cambia la dirección de apilamiento a vertical */
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
 }
 
