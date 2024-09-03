@@ -170,6 +170,9 @@
 .menu-container-wrapper {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-around; /* Distribuye uniformemente los botones */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten a nuevas líneas si es necesario */
 }
 
 .menu-icon {
@@ -180,6 +183,18 @@
     
 }
   
+@media (max-width: 768px) {
+  .menu-container-wrapper {
+      justify-content: center; /* Centra los íconos en pantallas pequeñas */
+  }
+
+  .menu-icon {
+      margin-right: 1vw;
+      margin-left: 1vw;
+      width: 5vw;
+      height: 5vw;
+  }
+}
 
 
 /* CONTROLES DE WALLET */
